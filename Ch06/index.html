@@ -9,45 +9,50 @@
         <meta name="description" content="Linux 101 课程讲义">
       
       
-      
         <meta name="author" content="LUG@USTC">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
     
     
       
-        <title>讲义 - Linux 101</title>
+        <title>网络、文本处理工具与 Shell 脚本 - Linux 101</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
-        
-      
-    
-    
-    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1c3799f8.min.css">
       
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
       
     
+    
+    
+      
     
     
       <link rel="stylesheet" href="../css/extra.css">
     
+      <link rel="stylesheet" href="https://101.lug.ustc.edu.cn/_extra/roboto.css">
+    
+      <link rel="stylesheet" href="https://101.lug.ustc.edu.cn/_extra/roboto-mono/stylesheet.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-        
-<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-160637954-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
-      
+  
+
+
+  
+  
+
+
+  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-160637954-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+
+
     
     
   </head>
@@ -55,13 +60,16 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -69,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#curl-wget-shell" class="md-skip">
+        <a href="#shell" class="md-skip">
           跳转至
         </a>
       
@@ -78,16 +86,19 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
     <a href=".." title="Linux 101" class="md-header__button md-logo" aria-label="Linux 101" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -99,31 +110,56 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              讲义
+              网络、文本处理工具与 Shell 脚本
             
           </span>
         </div>
       </div>
     </div>
     
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,8 +176,7 @@
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+        <a href="https://github.com/ustclug/Linux101-docs" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -153,11 +188,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -171,20 +209,19 @@
                     
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Linux 101" class="md-nav__button md-logo" aria-label="Linux 101" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"/></svg>
 
     </a>
     Linux 101
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+      <a href="https://github.com/ustclug/Linux101-docs" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -210,10 +247,20 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
-      <label class="md-nav__link" for="__nav_1">
-        负一：计划规格
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          负一：计划规格
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="负一：计划规格" data-md-level="1">
         <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
@@ -222,6 +269,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -232,8 +280,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -244,6 +294,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -279,10 +330,30 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="__nav_3">
-        零：欢迎
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="..">零：欢迎</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="零：欢迎" data-md-level="1">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
@@ -291,18 +362,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        欢迎
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -313,8 +375,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -325,6 +389,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -345,10 +410,30 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
-      <label class="md-nav__link" for="__nav_4">
-        一：初识 Linux
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch01/">一：初识 Linux</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="一：初识 Linux" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
@@ -357,18 +442,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch01/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -379,8 +455,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -391,6 +469,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -411,10 +490,30 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
-      <label class="md-nav__link" for="__nav_5">
-        二：个性化配置与建站体验
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch02/">二：个性化配置与建站体验</a>
+          
+            <label for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="二：个性化配置与建站体验" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
@@ -423,18 +522,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch02/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -445,8 +535,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -457,6 +549,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -477,10 +570,30 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
-      <label class="md-nav__link" for="__nav_6">
-        三：软件安装与文件操作
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch03/">三：软件安装与文件操作</a>
+          
+            <label for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="三：软件安装与文件操作" data-md-level="1">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
@@ -489,18 +602,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch03/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -511,8 +615,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -523,6 +629,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -543,10 +650,30 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
-      <label class="md-nav__link" for="__nav_7">
-        四：进程、前后台、服务与例行性任务
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch04/">四：进程、前后台、服务与例行性任务</a>
+          
+            <label for="__nav_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="四：进程、前后台、服务与例行性任务" data-md-level="1">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
@@ -555,18 +682,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch04/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -577,8 +695,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -589,6 +709,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -609,10 +730,30 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
-      <label class="md-nav__link" for="__nav_8">
-        五：用户与用户组、文件权限、文件系统层次结构
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch05/">五：用户与用户组、文件权限、文件系统层次结构</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="五：用户与用户组、文件权限、文件系统层次结构" data-md-level="1">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
@@ -621,18 +762,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch05/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -643,8 +775,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -655,6 +789,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -677,294 +812,41 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
       
-      <label class="md-nav__link" for="__nav_9">
-        六：网络下载工具与 Shell 脚本
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="六：网络下载工具与 Shell 脚本" data-md-level="1">
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index md-nav__link--active">
+          <a href="./">六：网络、文本处理工具与 Shell 脚本</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="六：网络、文本处理工具与 Shell 脚本" data-md-level="1">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
-          六：网络下载工具与 Shell 脚本
+          六：网络、文本处理工具与 Shell 脚本
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          讲义
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        讲义
-      </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#download-utils" class="md-nav__link">
-    网络下载
-  </a>
-  
-    <nav class="md-nav" aria-label="网络下载">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-wget-and-curl" class="md-nav__link">
-    为何使用 wget 和 cURL
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wget" class="md-nav__link">
-    Wget
-  </a>
-  
-    <nav class="md-nav" aria-label="Wget">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#wget-features" class="md-nav__link">
-    Wget 的特点
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wget-usage" class="md-nav__link">
-    wget 使用
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#curl" class="md-nav__link">
-    cURL
-  </a>
-  
-    <nav class="md-nav" aria-label="cURL">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#curl-usage" class="md-nav__link">
-    curl 使用
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    其他
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shell-scripts" class="md-nav__link">
-    Shell 脚本
-  </a>
-  
-    <nav class="md-nav" aria-label="Shell 脚本">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-shell" class="md-nav__link">
-    什么是 Shell
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bash" class="md-nav__link">
-    Bash
-  </a>
-  
-    <nav class="md-nav" aria-label="Bash">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bash_1" class="md-nav__link">
-    Bash 的特点
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bash-usage" class="md-nav__link">
-    Bash 脚本基础
-  </a>
-  
-    <nav class="md-nav" aria-label="Bash 脚本基础">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bash_2" class="md-nav__link">
-    Bash 脚本的运行
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bash-variable" class="md-nav__link">
-    shell 变量
-  </a>
-  
-    <nav class="md-nav" aria-label="shell 变量">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    用户自定义变量
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    环境变量
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    位置变量
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    特殊变量
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    特殊字符
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#arithmetic-ops" class="md-nav__link">
-    算术运算
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#expr" class="md-nav__link">
-    条件表达式
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flow-control" class="md-nav__link">
-    流程控制
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#functions" class="md-nav__link">
-    函数
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bash-debugging" class="md-nav__link">
-    Bash 脚本调试
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#thinking-questions" class="md-nav__link">
-    思考题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    引用来源
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
           
             
+              
   
   
   
@@ -975,8 +857,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -987,6 +871,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -1007,10 +892,28 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
       
-      <label class="md-nav__link" for="__nav_10">
-        七：Linux 上的编程
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch07/">七：Linux 上的编程</a>
+          
+            <label for="__nav_10">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="七：Linux 上的编程" data-md-level="1">
         <label class="md-nav__title" for="__nav_10">
           <span class="md-nav__icon md-icon"></span>
@@ -1019,18 +922,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch07/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -1041,6 +935,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -1061,10 +956,28 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
       
-      <label class="md-nav__link" for="__nav_11">
-        八：Docker
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch08/">八：Docker</a>
+          
+            <label for="__nav_11">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="八：Docker" data-md-level="1">
         <label class="md-nav__title" for="__nav_11">
           <span class="md-nav__icon md-icon"></span>
@@ -1073,18 +986,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch08/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -1095,6 +999,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -1115,30 +1020,39 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_12" type="checkbox" id="__nav_12" >
       
-      <label class="md-nav__link" for="__nav_12">
-        九：Shell 文字处理工具与正则表达式
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="九：Shell 文字处理工具与正则表达式" data-md-level="1">
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch09/">九：Shell 高级文本处理与正则表达式</a>
+          
+            <label for="__nav_12">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="九：Shell 高级文本处理与正则表达式" data-md-level="1">
         <label class="md-nav__title" for="__nav_12">
           <span class="md-nav__icon md-icon"></span>
-          九：Shell 文字处理工具与正则表达式
+          九：Shell 高级文本处理与正则表达式
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch09/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
           
             
+              
   
   
   
@@ -1149,6 +1063,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -1169,10 +1084,20 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_13" type="checkbox" id="__nav_13" >
       
-      <label class="md-nav__link" for="__nav_13">
-        附录
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_13">
+          附录
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="附录" data-md-level="1">
         <label class="md-nav__title" for="__nav_13">
           <span class="md-nav__icon md-icon"></span>
@@ -1181,18 +1106,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Appendix/glossary/" class="md-nav__link">
-        词汇表
-      </a>
-    </li>
-  
-
-          
-            
+              
   
   
   
@@ -1203,8 +1117,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1215,6 +1131,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -1249,6 +1166,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
@@ -1261,6 +1179,33 @@
       目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#redirection-and-pipe" class="md-nav__link">
+    I/O 重定向与管道
+  </a>
+  
+    <nav class="md-nav" aria-label="I/O 重定向与管道">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redirection" class="md-nav__link">
+    重定向
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipe" class="md-nav__link">
+    管道
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#download-utils" class="md-nav__link">
@@ -1294,7 +1239,7 @@
         
           <li class="md-nav__item">
   <a href="#wget-usage" class="md-nav__link">
-    wget 使用
+    使用 Wget
   </a>
   
 </li>
@@ -1314,7 +1259,7 @@
         
           <li class="md-nav__item">
   <a href="#curl-usage" class="md-nav__link">
-    curl 使用
+    使用 cURL
   </a>
   
 </li>
@@ -1325,8 +1270,56 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#download-others" class="md-nav__link">
     其他
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-utils" class="md-nav__link">
+    文本处理
+  </a>
+  
+    <nav class="md-nav" aria-label="文本处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wc" class="md-nav__link">
+    文本统计：wc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diff" class="md-nav__link">
+    文本比较：diff
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#head-and-tail" class="md-nav__link">
+    文本开头与结尾：head &amp; tail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep" class="md-nav__link">
+    文本查找：grep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    文本替换：sed
   </a>
   
 </li>
@@ -1356,38 +1349,17 @@
     Bash
   </a>
   
-    <nav class="md-nav" aria-label="Bash">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bash_1" class="md-nav__link">
-    Bash 的特点
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#bash-usage" class="md-nav__link">
-    Bash 脚本基础
-  </a>
-  
-    <nav class="md-nav" aria-label="Bash 脚本基础">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bash_2" class="md-nav__link">
+  <a href="#run-bash-script" class="md-nav__link">
     Bash 脚本的运行
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#bash-variable" class="md-nav__link">
+  <a href="#bash-variables" class="md-nav__link">
     shell 变量
   </a>
   
@@ -1395,35 +1367,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#bash-user-variables" class="md-nav__link">
     用户自定义变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#bash-environment-variables" class="md-nav__link">
     环境变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#bash-positional-parameters" class="md-nav__link">
     位置变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#bash-special-variables" class="md-nav__link">
     特殊变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#bash-special-tokens" class="md-nav__link">
     特殊字符
   </a>
   
@@ -1435,7 +1407,34 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arithmetic-ops" class="md-nav__link">
+  <a href="#bash-input-output" class="md-nav__link">
+    变量输入与输出
+  </a>
+  
+    <nav class="md-nav" aria-label="变量输入与输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bash-input" class="md-nav__link">
+    输入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bash-output" class="md-nav__link">
+    输出
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bash-arithmetic" class="md-nav__link">
     算术运算
   </a>
   
@@ -1459,11 +1458,6 @@
   <a href="#functions" class="md-nav__link">
     函数
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1505,34 +1499,62 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch06/index.md" title="编辑此页" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                <h1 id="curl-wget-shell">六：网络下载（cURL, Wget）与 Shell 脚本<a class="headerlink" href="#curl-wget-shell" title="Permanent link">&para;</a></h1>
+  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch06/index.md" title="编辑此页" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="shell">网络、文本处理工具与 Shell 脚本<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
 <div class="admonition success">
 <p class="admonition-title">本文已完稿并通过审阅，是正式版本。</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
-<p>很多 Linux 的初学者都会对以下这些问题感到迷惑</p>
+<p>很多 Linux 的初学者都会对以下这些问题感到迷惑：</p>
 <ul>
-<li>
-<p>在命令行黑乎乎的窗口，我要怎么下载文件？</p>
-</li>
-<li>
-<p>在命令行下，下载任务可以放在后台吗？如果我在命令行下结束下载任务，会不会使已下载部分全部白费？</p>
-</li>
-<li>
-<p>Bash 语法和 C 语言类似吗？和 Powershell 类似吗？</p>
-</li>
-<li>
-<p>Bash script 出 bug 的时候我该如何调试呢？</p>
-</li>
+<li>如何把命令的输出放到文件里？如何把命令的输出作为其他命令的输入？</li>
+<li>在命令行黑乎乎的窗口，我要怎么下载文件？</li>
+<li>在命令行下，下载任务可以放在后台吗？如果我在命令行下结束下载任务，会不会使已下载部分全部白费？</li>
+<li>在命令行下怎么查找与替换文件中的字符串？</li>
+<li>Bash 语法和 C 语言类似吗？和 Powershell 类似吗？</li>
+<li>Bash script 出 bug 的时候我该如何调试呢？</li>
 </ul>
 <p>下面内容可以解答你的疑问。</p>
 </div>
+<h2 id="redirection-and-pipe">I/O 重定向与管道<a class="headerlink" href="#redirection-and-pipe" title="Permanent link">&para;</a></h2>
+<h3 id="redirection">重定向<a class="headerlink" href="#redirection" title="Permanent link">&para;</a></h3>
+<p>一般情况下命令从<strong>标准输入（stdin）</strong>读取输入，并输出到<strong>标准输出（stdout）</strong>，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 <code>echo</code> 为例的重定向输出：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s2">&quot;Hello Linux!&quot;</span> &gt; output_file <span class="c1"># 将输出写入到文件（覆盖原有内容）</span>
+<span class="gp">$ </span>cat output_file
+<span class="go">Hello Linux!</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="s2">&quot;rewrite it&quot;</span> &gt; output_file
+<span class="gp">$ </span>cat output_file <span class="c1"># 可以看到原来的 Hello Linux! 被覆盖了。</span>
+<span class="go">rewrite it</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="s2">&quot;append it&quot;</span> &gt;&gt; output_file <span class="c1"># 将输出追加到文件（不会覆盖原有内容）</span>
+<span class="gp">$ </span>cat output_file
+<span class="go">rewrite it</span>
+<span class="go">append it</span>
+</code></pre></div>
+<p>无论是 <code>&gt;</code> 还是 <code>&gt;&gt;</code>，当输出文件不存在时都会创建该文件。</p>
+<p>重定向输入使用符号 <code>&lt;</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">command</span> &lt; inputfile
+<span class="nb">command</span> &lt; inputfile &gt; outputfile
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">小知识</p>
+<p>除了 stdin 和 stdout 还有标准错误（stderr），他们的编号分别是 0、1、2。stderr 可以用 <code>2&gt;</code> 重定向（注意数字 2 和 &gt; 之间没有空格）。</p>
+<p>使用 <code>2&gt;&amp;1</code> 可以将 stderr 合并到 stdout。</p>
+</div>
+<h3 id="pipe">管道<a class="headerlink" href="#pipe" title="Permanent link">&para;</a></h3>
+<p>管道（pipe），操作符 <code>|</code>，作用为将符号左边的命令的 stdout 接到之后的命令的 stdin。管道不会处理 stderr。</p>
+<p><img alt="管道示例" src="images/pipe.png" /></p>
+<p>管道是类 UNIX 操作系统中非常强大的工具。通过管道，我们可以将实现各类小功能的程序拼接起来干大事。</p>
+<p>示例如下：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls / <span class="p">|</span> grep bin  <span class="c1"># 筛选 ls / 输出中所有包含 bin 字符串的行</span>
+<span class="go">bin</span>
+<span class="go">sbin</span>
+</code></pre></div>
 <h2 id="download-utils">网络下载<a class="headerlink" href="#download-utils" title="Permanent link">&para;</a></h2>
 <h3 id="why-wget-and-curl">为何使用 wget 和 cURL<a class="headerlink" href="#why-wget-and-curl" title="Permanent link">&para;</a></h3>
 <p>在 Windows 下，很多人下载文件时会使用「迅雷」、「QQ 旋风」（停止运营）、「IDM」之类的软件来实现下载。那么在 Linux 环境下呢？在终端下，没有可视化软件提供点击下载。即使有桌面环境，有 Firefox 可以很方便地下载文件，硬件资源也会被很多不必要的服务浪费。通过以下内容讲述的 wget (<code>wget</code>) 和 cURL (<code>curl</code>) 工具，我们可以 Linux 上进行轻量的下载活动。</p>
@@ -1556,7 +1578,7 @@
 <p>支持代理服务器，以减轻网络负载，加快检索速度。</p>
 </li>
 </ul>
-<h4 id="wget-usage"><code>wget</code> 使用<a class="headerlink" href="#wget-usage" title="Permanent link">&para;</a></h4>
+<h4 id="wget-usage">使用 Wget<a class="headerlink" href="#wget-usage" title="Permanent link">&para;</a></h4>
 <p>使用 <code>man wget</code> 得到的结果为 <code>wget [option]... [URL]...</code>，其中的更多参数可以通过查看帮助 <code>wget -h</code> 来获取。</p>
 <p>常用的选项</p>
 <table>
@@ -1568,29 +1590,35 @@
 </thead>
 <tbody>
 <tr>
-<td><code>-i, --input-file=文件</code></td>
+<td><code>-i</code>, <code>--input-file=文件</code></td>
 <td>下载本地或外部文件中的 URL</td>
 </tr>
 <tr>
-<td><code>-O, --output-document=文件</code></td>
+<td><code>-O</code>, <code>--output-document=文件</code></td>
 <td>将输出写入文件</td>
 </tr>
 <tr>
-<td><code>-b, --background</code></td>
+<td><code>-b</code>, <code>--background</code></td>
 <td>在后台运行 wget</td>
 </tr>
 <tr>
-<td><code>-d, --debug</code></td>
+<td><code>-d</code>, <code>--debug</code></td>
 <td>调试模式，打印出 wget 运行时的调试信息</td>
 </tr>
 </tbody>
 </table>
-<details class="example"><summary>范例</summary><p><code>$ wget -i filelist.txt</code> 批量下载 filelist.txt 中给出的链接</p>
-<p><code>$ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"</code> 安装 oh-my-zsh</p>
+<details class="example">
+<summary>范例</summary>
+<p>批量下载 filelist.txt 中给出的链接：</p>
+<div class="highlight"><pre><span></span><code>$ wget -i filelist.txt
+</code></pre></div>
+<p>安装 oh-my-zsh：</p>
+<div class="highlight"><pre><span></span><code>$ sh -c <span class="s2">&quot;</span><span class="k">$(</span>wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
 </details>
 <h3 id="curl">cURL<a class="headerlink" href="#curl" title="Permanent link">&para;</a></h3>
-<p>cURL (<code>curl</code>) 是一个利用 <code>URL</code> 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。</p>
-<h4 id="curl-usage"><code>curl</code> 使用<a class="headerlink" href="#curl-usage" title="Permanent link">&para;</a></h4>
+<p>cURL (<code>curl</code>) 是一个利用 URL 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 Wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。</p>
+<h4 id="curl-usage">使用 cURL<a class="headerlink" href="#curl-usage" title="Permanent link">&para;</a></h4>
 <p>同 <code>wget</code> 部分，我们可以查看帮助 <code>curl -h</code> 了解其用法。</p>
 <p>常用的选项</p>
 <table>
@@ -1615,58 +1643,160 @@
 </tr>
 </tbody>
 </table>
-<details class="example"><summary>范例</summary><p><code>$ curl "http://cn.bing.com"</code> 会看到必应页面代码输出</p>
-<p><code>$ curl "http://cn.bing.com" &gt; bing.html</code> 把必应页面保存至 <code>bing.html</code> 本地，源码就被重定向到工作目录</p>
-<p><code>$ curl -o bing.html "http://cn.bing.com"</code> 同时也可以使用 <code>-o</code> 选项指定输出文件</p>
-<p><code>$ curl -O "https://lug.ustc.edu.cn/wiki/_media/wiki/logo.png"</code> 下载 LUG 的 logo</p>
-<p><code>$ curl -I "http://cn.bing.com"</code> 只展示响应头内容</p>
+<details class="example">
+<summary>范例</summary>
+<p>输出必应主页的代码：</p>
+<div class="highlight"><pre><span></span><code>$ curl <span class="s2">&quot;http://cn.bing.com&quot;</span>
+</code></pre></div>
+<p>使用重定向把必应页面保存至 <code>bing.html</code> 本地：</p>
+<div class="highlight"><pre><span></span><code>$ curl <span class="s2">&quot;http://cn.bing.com&quot;</span> &gt; bing.html
+</code></pre></div>
+<p>也可以使用 <code>-o</code> 选项指定输出文件：</p>
+<div class="highlight"><pre><span></span><code>$ curl -o bing.html <span class="s2">&quot;http://cn.bing.com&quot;</span>
+</code></pre></div>
+<p>下载 USTCLUG 的 logo：</p>
+<div class="highlight"><pre><span></span><code>$ curl -O <span class="s2">&quot;https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png&quot;</span>
+</code></pre></div>
+<p>只展示 HTTP 响应头内容：</p>
+<div class="highlight"><pre><span></span><code>$ curl -I <span class="s2">&quot;http://cn.bing.com&quot;</span>
+</code></pre></div>
 </details>
-<h3 id="_1">其他<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<p>除了 wget、curl，还有 mwget（多线程版本 wget）、axel、aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 aria2 在 Windows 下使用也很广泛。</p>
+<h3 id="download-others">其他<a class="headerlink" href="#download-others" title="Permanent link">&para;</a></h3>
+<p>除了 Wget、cURL，还有 mwget（多线程版本 wget）、Axel、Aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 Aria2 在 Windows 下使用也很广泛。</p>
+<h2 id="text-utils">文本处理<a class="headerlink" href="#text-utils" title="Permanent link">&para;</a></h2>
+<p>在进行文本处理时，我们有一些常见的需求：</p>
+<ul>
+<li>获取文本的行数、字数</li>
+<li>比较两段文本的不同之处</li>
+<li>查看文本的开头几行和最后几行</li>
+<li>在文本中查找字符串</li>
+<li>在文本中替换字符串</li>
+</ul>
+<p>下面介绍如何在 shell 中做到这些事情。</p>
+<h3 id="wc">文本统计：wc<a class="headerlink" href="#wc" title="Permanent link">&para;</a></h3>
+<p><code>wc</code> 是文本统计的常用工具，它可以输出文本的行数、单词数与字符（字节）数。</p>
+<div class="highlight"><pre><span></span><code>$ wc file
+     <span class="m">427</span>    <span class="m">2768</span>   <span class="m">20131</span> file
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">统计中文文本时的问题</p>
+<p><code>wc</code> 在统计中文文本时，会出现一些问题，比如：</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s1">&#39;中文测试&#39;</span> <span class="p">|</span> wc
+<span class="m">1</span>       <span class="m">1</span>      <span class="m">13</span>
+</code></pre></div>
+<p>这里显示文本只有 1 个单词，但是有 13 个字符，这显然是不对的。</p>
+<p>对于字符数统计结果，可以使用 <code>wc -m</code> 命令要求 <code>wc</code> 考虑宽字符：</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s1">&#39;中文测试&#39;</span> <span class="p">|</span> wc -m
+<span class="m">5</span>
+</code></pre></div>
+<p>换行符也是一个符号，所以结果为 5（而非 4）。</p>
+<p>由于中文文本的单词统计涉及分词算法问题，<code>wc</code> 无法准确统计。</p>
+</div>
+<h3 id="diff">文本比较：diff<a class="headerlink" href="#diff" title="Permanent link">&para;</a></h3>
+<p>diff 工具用于比较两个文件的不同，并列出差异。</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> hello &gt; file1
+$ <span class="nb">echo</span> hallo &gt; file2
+$ diff file1 file1
+$ diff file1 file2
+1c1
+&lt; hello
+---
+&gt; hallo
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">小知识</p>
+<p>加参数 <code>-w</code> 可忽略所有空白字符， <code>-b</code> 可忽略空白字符的数量变化。</p>
+<p>假如比较的是两个文本文件，差异之处会被列出；假如比较的是二进制文件，只会指出是否有差异。</p>
+</div>
+<h3 id="head-and-tail">文本开头与结尾：head &amp; tail<a class="headerlink" href="#head-and-tail" title="Permanent link">&para;</a></h3>
+<p>顾名思义，head 和 tail 分别用来显示开头和结尾指定数量的文字。</p>
+<p>以 head 为例，这里给出共同的用法：</p>
+<ul>
+<li>不加参数的时候默认显示前 10 行</li>
+<li><code>-n &lt;NUM&gt;</code> 指定行数，可简化为 <code>-&lt;NUM&gt;</code></li>
+<li><code>-c &lt;NUM&gt;</code> 指定字节数</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>head file  <span class="c1"># 显示 file 前 10 行</span>
+<span class="gp">$ </span>head -n <span class="m">25</span> file  <span class="c1"># 显示 file 前 25 行</span>
+<span class="gp">$ </span>head -25 file  <span class="c1"># 显示 file 前 25 行</span>
+<span class="gp">$ </span>head -c <span class="m">20</span> file  <span class="c1"># 显示 file 前 20 个字符</span>
+<span class="gp">$ </span>tail -10 file  <span class="c1"># 显示 file 最后 10 行</span>
+</code></pre></div>
+<p>除此以外，tail 还有一个非常实用的参数 <code>-f</code>：当文件末尾内容增长时，持续输出末尾增加的内容。这个参数常用于动态显示 log 文件的更新（试一试 <code>tail -f /var/log/syslog</code>）。</p>
+<h3 id="grep">文本查找：grep<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
+<p><code>grep</code> 命令可以查找文本中的字符串：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>grep <span class="s1">&#39;hello&#39;</span> file  <span class="c1"># 查找文件 file 中包含 hello 的行</span>
+<span class="gp">$ </span>ls <span class="p">|</span> grep <span class="s1">&#39;file&#39;</span>  <span class="c1"># 查找当前目录下文件名包含 file 的文件</span>
+<span class="gp">$ </span>grep -i <span class="s1">&#39;Systemd&#39;</span> file  <span class="c1"># 查找文件 file 中包含 Systemd 的行（忽略大小写）</span>
+<span class="gp">$ </span>grep -R <span class="s1">&#39;hello&#39;</span> .  <span class="c1"># 递归查找当前目录下内容包含 hello 的文件</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">不止如此！</p>
+<p>grep 事实上是非常强大的查找工具，<a href="../Ch09/">第九章</a>将在介绍正则表达式语法之后进一步介绍 grep。</p>
+</div>
+<h3 id="sed">文本替换：sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
+<p><code>sed</code> 命令可以替换文本中的字符串：</p>
+<div class="highlight"><pre><span></span><code>$ sed <span class="s1">&#39;s/hello/world/g&#39;</span> file  <span class="c1"># 将文件 file 中的 hello 全局（global）替换为 world 后输出</span>
+$ sed <span class="s1">&#39;s/hello/world/&#39;</span> file  <span class="c1"># 将文件 file 中第一个出现的 hello 替换为 world 后输出</span>
+$ <span class="nb">echo</span> <span class="s1">&#39;helloworld&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/hello/world/g&#39;</span>  <span class="c1"># 管道也是可以的</span>
+$ sed -i <span class="s1">&#39;s/hello/world/g&#39;</span> file  <span class="c1"># -i 参数会直接写入文件，操作前记得备份哦！</span>
+$ sed -i.bak <span class="s1">&#39;s/hello/world/g&#39;</span> file  <span class="c1"># 当然，也可以让 sed 帮你备份到 file.bak</span>
+</code></pre></div>
+<p>对于大多数用户来说，最常用 <code>sed</code> 的场合是替换软件源的时候。在阅读了上面的示例之后，以下例子就很简单了：</p>
+<div class="highlight"><pre><span></span><code>$ sudo sed -i <span class="s1">&#39;s/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
+$ sudo sed -i <span class="s1">&#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
+$ sudo sed -i <span class="s1">&#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">同样不止如此！</p>
+<p>sed 事实上是非常强大的文本操作工具，不仅支持正则表达式，而且能够做的操作也不止是替换。<a href="../Ch09/">第九章</a>将进一步介绍 sed。</p>
+</div>
 <h2 id="shell-scripts">Shell 脚本<a class="headerlink" href="#shell-scripts" title="Permanent link">&para;</a></h2>
 <h3 id="what-is-shell">什么是 Shell<a class="headerlink" href="#what-is-shell" title="Permanent link">&para;</a></h3>
 <p>Shell 是 Linux 的命令解释程序，是用户和内核之间的接口。除了作为命令解释程序外，Shell 同时还提供了一个可支持强大脚本语言的程序环境。</p>
 <h3 id="bash">Bash<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h3>
 <p>Bourne Shell (<code>sh</code>)，是 Unix 系统的默认 Shell，简单轻便，脚本编程功能强，但交互性差。</p>
 <p>Bourne Again Shell，即 Bash，是 GNU 开发的一个 Shell，也是大部分 Linux 系统的默认 Shell，是 Bourne Shell 的扩展。</p>
-<h4 id="bash_1"><code>Bash</code> 的特点<a class="headerlink" href="#bash_1" title="Permanent link">&para;</a></h4>
-<ul>
-<li>
-<p>支持 I/O 重定向（<code>&gt;</code>, <code>&gt;&gt;</code>, <code>&lt;</code>）和管道（<code>|</code>）等。</p>
-</li>
-<li>
-<p>环境控制，允许用户定制环境以满足自己需要。环境文件 <code>.bash_profile</code>、<code>.bashrc</code>、<code>.bash_logout</code>。通过配置合适的环境变量，可以改变主目录、命令提示符、命令搜索路径等用户工作环境。</p>
-</li>
-<li>
-<p>支持后台运行 <code>&amp;</code>。</p>
-</li>
-<li>
-<p>占用资源较少，来自 GNU，与 Linux 相容性高。支持命令行编辑，提供命令补全功能键 Tab。</p>
-</li>
-<li>
-<p>允许应用别名代替命令关键字（<code>alias name='命令'</code>）。</p>
-</li>
-</ul>
-<h3 id="bash-usage">Bash 脚本基础<a class="headerlink" href="#bash-usage" title="Permanent link">&para;</a></h3>
-<h4 id="bash_2">Bash 脚本的运行<a class="headerlink" href="#bash_2" title="Permanent link">&para;</a></h4>
+<p>Bash 允许用户定制环境以满足自己需要。通过修改环境文件 <code>.bash_profile</code>、<code>.bashrc</code>、<code>.bash_logout</code>，配置合适的环境变量，可以改变主目录、命令提示符、命令搜索路径等用户工作环境。</p>
+<p>此外，bash 也支持使用 <code>alias</code> 别名代替命令关键字（<code>alias name='命令'</code>）。输入 <code>alias</code>，可以查看目前存在的别名：</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">alias</span>
+<span class="nb">alias</span> <span class="nv">alert</span><span class="o">=</span><span class="s1">&#39;notify-send --urgency=low -i &quot;$([ $? = 0 ] &amp;&amp; echo terminal || echo error)&quot; &quot;$(history|tail -n1|sed -e &#39;</span><span class="se">\&#39;</span><span class="s1">&#39;s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;)&quot;&#39;</span>
+<span class="nb">alias</span> <span class="nv">egrep</span><span class="o">=</span><span class="s1">&#39;egrep --color=auto&#39;</span>
+<span class="nb">alias</span> <span class="nv">fgrep</span><span class="o">=</span><span class="s1">&#39;fgrep --color=auto&#39;</span>
+<span class="nb">alias</span> <span class="nv">grep</span><span class="o">=</span><span class="s1">&#39;grep --color=auto&#39;</span>
+<span class="nb">alias</span> <span class="nv">l</span><span class="o">=</span><span class="s1">&#39;ls -CF&#39;</span>
+<span class="nb">alias</span> <span class="nv">la</span><span class="o">=</span><span class="s1">&#39;ls -A&#39;</span>
+<span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -alF&#39;</span>
+<span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span><span class="s1">&#39;ls --color=auto&#39;</span>
+$ ll  <span class="c1"># 执行 ll 相当于执行 ls -alF</span>
+总用量 <span class="m">128</span>
+drwxr-xr-x <span class="m">18</span> ustc ustc <span class="m">4096</span> 2月  <span class="m">28</span> <span class="m">00</span>:51 ./
+drwxr-xr-x  <span class="m">3</span> root root <span class="m">4096</span> 11月 <span class="m">17</span> <span class="m">20</span>:26 ../
+drwxr-xr-x  <span class="m">2</span> ustc ustc <span class="m">4096</span> 11月 <span class="m">17</span> <span class="m">20</span>:45 公共的/
+drwxr-xr-x  <span class="m">2</span> ustc ustc <span class="m">4096</span> 11月 <span class="m">17</span> <span class="m">20</span>:45 模板/
+（以下省略）
+</code></pre></div>
+<h3 id="run-bash-script">Bash 脚本的运行<a class="headerlink" href="#run-bash-script" title="Permanent link">&para;</a></h3>
 <p>可以使用几种方法运行 Bash 脚本：</p>
 <ul>
-<li>在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数。</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ bash show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
+<li>
+<p>在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数：</p>
+<div class="highlight"><pre><span></span><code>$ bash show.sh <span class="o">[</span>option<span class="o">]</span>
 </code></pre></div>
-<ul>
-<li>使用「.」命令执行脚本，「.」后要有空格。</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ . ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
+</li>
+<li>
+<p>使用 <code>.</code> 命令执行脚本。与其他命令一样，<code>.</code> 也是一条命令，其后要有空格：</p>
+<div class="highlight"><pre><span></span><code>$ . ./show.sh <span class="o">[</span>option<span class="o">]</span>
 </code></pre></div>
-<ul>
-<li>将脚本设置为可执行，然后当做外部命令执行执行。</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ chmod a+x showinfo
-$ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
+</li>
+<li>
+<p>将脚本设置为可执行，然后像外部命令一样执行：</p>
+<div class="highlight"><pre><span></span><code>$ chmod a+x show.sh
+$ ./show.sh <span class="o">[</span>option<span class="o">]</span>
 </code></pre></div>
-<p>许多 Bash 脚本会在文件首行加上 <code>#!/bin/bash</code> 。这里 <code>#!</code> 符号的名称是 shebang （也叫 sha-bang，即 sharp <code>#</code> 与 bang <code>!</code>）。当一个文本文件首行有 shebang，且以可执行模式执行时， shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。</p>
+</li>
+</ul>
+<p>许多 Bash 脚本会在文件首行加上 <code>#!/bin/bash</code> 。这里 <code>#!</code> 符号的名称是 shebang（也叫 sha-bang，即 sharp <code>#</code> 与 bang <code>!</code>）。当一个文本文件首行有 shebang，且以可执行模式执行时，shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。</p>
 <p>例如，某个 <code>foo.sh</code> 首行为 <code>#!/bin/bash</code>，则执行 <code>./foo.sh</code> 就等于执行 <code>/bin/bash ./foo.sh</code>。</p>
 <p>Bash 也支持在同一个行中安排多个命令：</p>
 <table>
@@ -1686,7 +1816,7 @@ $ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p
 <td>先执行前面的命令，若成功，才接着执行后面命令；若失败，不执行后面命令</td>
 </tr>
 <tr>
-<td><code>\|\|</code></td>
+<td><code>||</code></td>
 <td>先执行前面的命令，若成功，不执行后面命令；若失败，才执行后面命令</td>
 </tr>
 <tr>
@@ -1704,26 +1834,29 @@ $ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p
 <p>使用 <code>(命令1; 命令2; …)</code>，组命令会建立独立的 shell 子进程来执行组命令，这里的圆括号周围并不需要空格。</p>
 </li>
 </ul>
-<details class="example"><summary>组命令示例</summary><div class="highlight"><pre><span></span><code>➜  ~ tree tmp
-tmp
-└── temp
-<span class="c1">#------</span>
-➜  ~ <span class="o">(</span><span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span><span class="o">)</span>
-temp
-➜  ~
-<span class="c1">#------</span>
-➜  ~ <span class="o">{</span> <span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span> <span class="o">}</span>
-temp
-➜  tmp
+<details class="example">
+<summary>组命令示例</summary>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">pwd</span>  <span class="c1"># 当前在家目录</span>
+/home/ustc
+$ <span class="o">(</span><span class="nb">cd</span> /tmp<span class="p">;</span> pwd<span class="p">;</span><span class="o">)</span>
+/tmp
+$ <span class="nb">pwd</span>  <span class="c1"># 仍然在家目录</span>
+/home/ustc
+$ <span class="o">{</span> <span class="nb">cd</span> /tmp<span class="p">;</span> pwd<span class="p">;</span> <span class="o">}</span>
+/tmp
+$ <span class="nb">pwd</span>  <span class="c1"># 移动到了 /tmp 目录</span>
+/tmp
 </code></pre></div>
-<p>执行组命令 <code>{ cd tmp; ls; }</code> 后，当前目录会被修改，但是执行 <code>(cd tmp; ls;)</code> 不会修改当前目录。</p>
+<p>执行组命令 <code>{ cd /tmp; pwd; }</code> 后，当前目录会被修改，但是执行 <code>(cd /tmp; pwd;)</code> 不会修改当前目录。</p>
 </details>
-<h4 id="bash-variable">shell 变量<a class="headerlink" href="#bash-variable" title="Permanent link">&para;</a></h4>
+<h3 id="bash-variables">shell 变量<a class="headerlink" href="#bash-variables" title="Permanent link">&para;</a></h3>
 <p>像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。</p>
-<h5 id="_2">用户自定义变量<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h5>
+<h4 id="bash-user-variables">用户自定义变量<a class="headerlink" href="#bash-user-variables" title="Permanent link">&para;</a></h4>
 <p>变量定义：<code>name=串</code>，其中 <code>=</code> 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$name</code> 或 <code>${name}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
 <p>已定义的变量可以通过 <code>unset name</code> 来删除。</p>
-<details class="example"><summary>变量使用示例</summary><p>变量定义：</p>
+<div class="admonition example">
+<p class="admonition-title">变量使用示例</p>
+<p>变量定义：</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> skill <span class="k">in</span> Ada Coffee Action Java<span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> <span class="s2">&quot;I am good at </span><span class="si">${</span><span class="nv">skill</span><span class="si">}</span><span class="s2">Script&quot;</span>
 <span class="k">done</span>
@@ -1734,15 +1867,29 @@ I am good at CoffeeScript
 I am good at ActionScript
 I am good at JavaScript
 </code></pre></div>
-<p>如果不给 <code>skill</code> 加花括号，写成 <code>echo "I am good at $skillScript"</code> ，解释器就会把 <code>$skillScript</code> 当成一个变量（其值为空）。</p>
+<p>如果不给 <code>skill</code> 加花括号标明变量名的边界，写成 <code>echo "I am good at $skillScript"</code> ，解释器就会把 <code>$skillScript</code> 当成一个变量（其值为空）。</p>
 <p>删除变量：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">Today</span><span class="o">=</span><span class="m">1024</span>
 <span class="nb">unset</span> Today
 <span class="nb">echo</span> <span class="nv">$Today</span>
 </code></pre></div>
-<p>输出为空</p>
+<p>输出为空。</p>
+</div>
+<details class="tip">
+<summary>处理未定义的变量</summary>
+<p>在以上的例子中，我们可以注意到 bash 中未定义的变量默认值为空值。在编写 shell 脚本时，我们可能会希望能够严格一些：如果变量未定义，就直接报错退出。这样的话，如果变量名出现了拼写错误，我们就能第一时间发现。</p>
+<p>可以在脚本开头加上 <code>set -u</code> 来实现这一点：</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nb">set</span> -u
+<span class="nb">echo</span> <span class="nv">$nonexist</span>
+<span class="nb">echo</span> <span class="s2">&quot;This will never be printed.&quot;</span>
+</code></pre></div>
+<p>执行可以发现输出类似如下的错误：</p>
+<div class="highlight"><pre><span></span><code>example.sh: line 4: nonexist: unbound variable
+</code></pre></div>
 </details>
-<h5 id="_3">环境变量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
+<h4 id="bash-environment-variables">环境变量<a class="headerlink" href="#bash-environment-variables" title="Permanent link">&para;</a></h4>
 <p>每个用户登录系统后，Linux 都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 Bash 中，可用 <code>env</code> 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：</p>
 <ul>
 <li>
@@ -1752,7 +1899,7 @@ I am good at JavaScript
 <p><code>LOGNAME</code>：登录用户名。</p>
 </li>
 <li>
-<p><code>PATH</code>：命令搜索路径。</p>
+<p><code>PATH</code>：命令搜索路径，路径以冒号分割。当我们输入命令名时，系统会在 <code>PATH</code> 变量中从前往后逐个搜索对应的程序是否在目录中。</p>
 </li>
 <li>
 <p><code>PWD</code>：用户当前工作目录路径。</p>
@@ -1764,27 +1911,41 @@ I am good at JavaScript
 <p><code>TERM</code>：使用的终端名。</p>
 </li>
 </ul>
-<h5 id="_4">位置变量<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
+<p>可以使用 <code>export</code> 命令来定义环境变量。在同一个 shell 中使用 <code>export</code> 定义之后，这个环境变量会一直保留，直到这个 shell 退出。</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">A</span><span class="o">=</span><span class="m">1</span>
+$ env <span class="p">|</span> grep <span class="nv">A</span><span class="o">=</span>
+<span class="nv">A</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>此外，也可以在命令前加上环境变量的定义。此时只有这一条命令的环境变量出现变化。</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nv">B</span><span class="o">=</span><span class="m">1</span> env <span class="p">|</span> grep <span class="nv">B</span><span class="o">=</span>
+<span class="nv">B</span><span class="o">=</span><span class="m">1</span>
+$ env <span class="p">|</span> grep <span class="nv">B</span><span class="o">=</span>
+$ <span class="c1"># B=1 的环境变量定义仅对该命令有效</span>
+</code></pre></div>
+<h4 id="bash-positional-parameters">位置变量<a class="headerlink" href="#bash-positional-parameters" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
-<p>Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 <code>$1</code>, <code>$2</code>, <code>$3</code>, ..., <code>$9</code>，程序名本身对应 <code>$0</code>。</p>
+<p>Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 <code>$1</code>、<code>$2</code>、<code>$3</code>、……、<code>$9</code>，程序名本身对应 <code>$0</code>。</p>
 </li>
 <li>
-<p>可用 <code>shift n</code> 命令，改变命令行参数与 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 的对应关系。</p>
+<p>可用 <code>shift &lt;n&gt;</code> 命令，丢弃开头的 n 个位置变量，改变 <code>$1</code>、<code>$2</code>、<code>$3</code> 等的对应关系。</p>
 </li>
 <li>
-<p>可用 <code>set</code> 命令，直接给 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 等赋值。</p>
+<p>可用 <code>set</code> 命令，重置整个位置变量列表，从而给 <code>$1</code>、<code>$2</code>、<code>$3</code> 等赋值。</p>
 </li>
 </ul>
-<details class="example"><summary>范例</summary><div class="highlight"><pre><span></span><code>$ <span class="nb">set</span> one two three
-$ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
-one two three
-$ <span class="nb">shift</span> <span class="m">2</span>
-$ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
-three
+<details class="example">
+<summary>范例</summary>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">set</span> one two three
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
+<span class="go">one two three</span>
+<span class="gp">$ </span><span class="nb">shift</span> <span class="m">2</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
+<span class="go">three</span>
+<span class="gp">$ </span><span class="c1"># 此时 $2 和 $3 已不存在</span>
 </code></pre></div>
 </details>
-<h5 id="_5">特殊变量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
+<h4 id="bash-special-variables">特殊变量<a class="headerlink" href="#bash-special-variables" title="Permanent link">&para;</a></h4>
 <p>Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引用，而不能直接改变或重置这些变量。</p>
 <table>
 <thead>
@@ -1820,29 +1981,106 @@ three
 </tr>
 </tbody>
 </table>
-<h5 id="_6">特殊字符<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
+<h4 id="bash-special-tokens">特殊字符<a class="headerlink" href="#bash-special-tokens" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
-<p>双引号，能消除空格、制表符的特殊含义，但不能消除很多其他特殊字符的特殊含义。</p>
-</li>
-<li>
-<p>单引号，能消除所有特殊字符的特殊含义，包括反斜杠，因此单引号字符串中不能使用反斜杠转义单引号本身。</p>
-</li>
-<li>
-<p>反引号括起的字符串，被 shell 解释为命令，执行时用命令输出结果代替整个反引号对界限部分。</p>
-</li>
-<li>
-<p>与反引号相同的语法是 <code>$(command)</code>，它的好处是界限更明确，且可以嵌套。</p>
-</li>
-<li>
 <p>反斜杠，消除单个字符的特殊含义。</p>
+<ul>
+<li>包含空白字符（空格和制表符）、反斜杠本身、各种引号，以及 <code>$</code>、<code>!</code> 等。</li>
+<li>与其他语言不同，shell 中反斜杠不会将普通字符转义为其他含义（例如 <code>\n</code> 不会被视作换行符）。</li>
+</ul>
+</li>
+<li>
+<p>使用双引号包裹字符串可以消除空白字符切分参数的特殊含义，但是很多其他特殊字符的特殊含义仍然保留。双引号也被称为「弱引用」。</p>
+</li>
+<li>
+<p>单引号，能消除所有特殊字符的特殊含义，包括反斜杠，因此单引号字符串中不能使用反斜杠转义单引号本身。单引号也被称为「强引用」。</p>
+</li>
+<li>
+<p>反引号（<code>`</code>）括起的字符串，被 shell 解释为命令，执行时用命令输出结果代替整个反引号对界限部分。</p>
+<ul>
+<li>与反引号相同的语法是 <code>$(command)</code>，它的好处是界限更明确，且可以嵌套。因此编写新脚本时，更建议使用此语法。</li>
+</ul>
 </li>
 </ul>
-<h4 id="arithmetic-ops">算术运算<a class="headerlink" href="#arithmetic-ops" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">特殊字符示例</p>
+<div class="highlight"><pre><span></span><code>$ ls /mnt/c/Program Files/
+ls: cannot access /mnt/c/Program: No such file or directory
+ls: cannot access Files/: No such file or directory
+$ <span class="c1"># 对于 ls 来说，它接收到了两个参数：/mnt/c/Program 和 Files/，因此会报错。</span>
+$ <span class="c1"># 可以使用反斜杠来转义空格</span>
+$ ls /mnt/c/Program<span class="se">\ </span>Files/  <span class="c1"># 输出省略</span>
+$ <span class="c1"># 或者使用双引号或单引号包裹</span>
+$ ls <span class="s2">&quot;/mnt/c/Program Files/&quot;</span>
+$ ls <span class="s1">&#39;/mnt/c/Program Files/&#39;</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>  <span class="c1"># 双引号中仍然可以使用各种 shell 特殊符号</span>
+/home/ustc
+$ <span class="nb">echo</span> <span class="s1">&#39;$PWD&#39;</span>  <span class="c1"># 但是单引号则不行</span>
+<span class="nv">$PWD</span>
+$ ls -lh <span class="sb">`</span>which ls<span class="sb">`</span>  <span class="c1"># 查看 ls 命令对应的程序信息，使用反引号语法</span>
+-rwxr-xr-x <span class="m">1</span> root root 139K Sep  <span class="m">5</span>  <span class="m">2019</span> /usr/bin/ls
+$ ls -lh <span class="k">$(</span>which ls<span class="k">)</span> <span class="c1"># 使用 $(command) 语法也是一样的</span>
+-rwxr-xr-x <span class="m">1</span> root root 139K Sep  <span class="m">5</span>  <span class="m">2019</span> /usr/bin/ls
+</code></pre></div>
+</div>
+<h3 id="bash-input-output">变量输入与输出<a class="headerlink" href="#bash-input-output" title="Permanent link">&para;</a></h3>
+<h4 id="bash-input">输入<a class="headerlink" href="#bash-input" title="Permanent link">&para;</a></h4>
+<p>可以使用 <code>read</code> 命令读取用户输入，并将输入的内容赋值给变量。其中 <code>-p</code> 参数后可以设置输出的提示信息。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="gp">$ </span><span class="nb">read</span> -p <span class="s2">&quot;Enter your name: &quot;</span> name  <span class="c1"># 输出提示，然后从输入读取一个值，存储到 $name 中</span>
+<span class="go">Enter your name: linux</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$name</span>
+<span class="go">linux</span>
+</code></pre></div>
+<p>在使用 <code>read</code> 时，建议加上 <code>-r</code> 参数，否则 <code>\</code> 会被视为转义符号。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="gp">$ </span><span class="nb">read</span> -p <span class="s2">&quot;Enter your message: &quot;</span> message
+<span class="go">Enter your message: \(^o^)/~</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$message</span>  <span class="c1"># 可以看到，反斜杠被认为是转义符号，结果被丢弃</span>
+<span class="gp gp-VirtualEnv">(^o^)</span><span class="go">/~</span>
+<span class="gp">$ </span><span class="nb">read</span> -r -p <span class="s2">&quot;Enter your message: &quot;</span> message
+<span class="go">Enter your message: \(^o^)/~</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$message</span>  <span class="c1"># 加上 -r 参数后，反斜杠完好无损</span>
+<span class="go">\(^o^)/~</span>
+</code></pre></div>
+<h4 id="bash-output">输出<a class="headerlink" href="#bash-output" title="Permanent link">&para;</a></h4>
+<p>可以使用 <code>echo</code> 命令输出变量信息。其中 <code>-n</code> 参数不会在结尾输出换行符，而 <code>-e</code> 参数会解析文本中的转义字符（例如 <code>\n</code>）。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span> -n <span class="s2">&quot;hello&quot;</span>
+<span class="go">hello$ # 由于这里 echo 结尾不输出换行，shell 就会在这里继续接受用户输入</span>
+<span class="gp">$ </span><span class="c1"># 这也是为什么在 C 语言中最后的 printf 输出需要加上 \n 的原因</span>
+<span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;linux&quot;</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="s2">&quot;Hello </span><span class="nv">$name</span><span class="s2">.\nWelcome to bash!&quot;</span>  <span class="c1"># 可以看到 \n 没有被转义成换行</span>
+<span class="go">Hello linux.\nWelcome to bash!</span>
+<span class="gp">$ </span><span class="nb">echo</span> -e <span class="s2">&quot;Hello </span><span class="nv">$name</span><span class="s2">.\nWelcome to bash!&quot;</span>  <span class="c1"># 加上 -e 之后就被转义了</span>
+<span class="go">Hello linux.</span>
+<span class="go">Welcome to bash!</span>
+</code></pre></div>
+<p>此外，<code>printf</code> 命令也可以用来输出，它的使用方法类似于 C 中的 <code>printf()</code> 函数。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;linux&quot;</span>
+<span class="gp">$ </span><span class="nb">printf</span> <span class="s2">&quot;Hello %s&quot;</span> <span class="s2">&quot;</span><span class="nv">$name</span><span class="s2">&quot;</span>
+<span class="go">Hello linux$ # 和 echo 不同，printf 结尾默认不输出换行符</span>
+<span class="gp">$ </span><span class="nb">printf</span> <span class="s2">&quot;Hello %s\n&quot;</span> <span class="s2">&quot;</span><span class="nv">$name</span><span class="s2">&quot;</span>
+<span class="go">Hello linux</span>
+<span class="gp">$ </span><span class="c1"># 所以为了正常显示，需要在结尾补上 \n</span>
+</code></pre></div>
+<h3 id="bash-arithmetic">算术运算<a class="headerlink" href="#bash-arithmetic" title="Permanent link">&para;</a></h3>
 <p>在 Bash 中进行算术运算，需要使用 <code>expr</code> 计算算术表达式值或 <code>let</code> 命令赋值表达式值到变量。基本运算符是 <code>+</code>、<code>-</code>、<code>\*</code> (转义)、<code>/</code>、<code>%</code>。在 <code>expr</code> 中，运算符两边与操作数之间必须有空格，小括号要转义；但 <code>let</code> 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
-<p>另外，所有标准的 shell 都支持另一种语法 <code>(( 表达式 ))</code>，其中 <code>表达式</code> 是一个 C 风格的数学表达式，可以计算，也可以复制。<code>(( 表达式 ))</code> <strong>是一条完整的命令</strong>，命令的返回值为 0 或 1，它的真假性与表达式在 C 中的真假性相同。也就是说，若表达式的结果非零，那么 <code>(())</code> 命令返回零，而当表达式结果为零时命令返回 1，这是因为 shell 中用零表示真值，这一点与 C 语言恰好想法（回想一下，C 语言中 <code>return 0</code> 表示<strong>正常</strong>退出）。</p>
-<p>使用 <code>$(( 表达式 ))</code> 可以将计算结果用作为命令行的一部分。</p>
-<details class="example"><summary><code>expr</code> 和 <code>let</code> 使用示例</summary><div class="highlight"><pre><span></span><code>$ expr length <span class="s2">&quot;ustclug&quot;</span>
+<p>另外，所有标准的 shell 都支持另一种语法 <code>(( 表达式 ))</code>，其中 <code>表达式</code> 是一个 C 风格的数学表达式，可以计算，也可以赋值。<code>(( 表达式 ))</code> <strong>是一条完整的命令</strong>，命令的返回值为 0 或 1。若表达式的结果非零，那么 <code>(( 表达式 ))</code> 命令返回零，而当表达式结果为零时命令返回 1。</p>
+<details class="example">
+<summary><code>(( 表达式 ))</code> 的返回值</summary>
+<div class="highlight"><pre><span></span><code>$ <span class="o">((</span> <span class="m">1</span> + <span class="m">1</span> <span class="o">))</span>
+$ <span class="nb">echo</span> <span class="nv">$?</span>  <span class="c1"># 结果为 2，所以返回值为 0</span>
+<span class="m">0</span>
+$ <span class="o">((</span> <span class="m">1</span> - <span class="m">1</span> <span class="o">))</span>
+$ <span class="nb">echo</span> <span class="nv">$?</span>  <span class="c1"># 返回值为 1，因为结果是 0</span>
+<span class="m">1</span>
+</code></pre></div>
+</details>
+<p>使用 <code>$(( 表达式 ))</code> 可以将计算结果用作为命令行的一部分，就像使用变量一样。</p>
+<details class="example">
+<summary><code>expr</code> 和 <code>let</code> 使用示例</summary>
+<div class="highlight"><pre><span></span><code>$ expr length <span class="s2">&quot;ustclug&quot;</span>
 <span class="m">7</span>
 $ <span class="nb">let</span> <span class="nv">a</span><span class="o">=</span><span class="m">0</span>
 $ <span class="nb">echo</span> <span class="nv">$a</span>
@@ -1857,11 +2095,13 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 <span class="m">3</span>
 </code></pre></div>
 </details>
-<h4 id="expr">条件表达式<a class="headerlink" href="#expr" title="Permanent link">&para;</a></h4>
+<h3 id="expr">条件表达式<a class="headerlink" href="#expr" title="Permanent link">&para;</a></h3>
 <p>条件表达式写成 <code>test 条件表达式</code>，或 <code>[ 条件表达式 ]</code>，注意表达式与方括号之间有空格。</p>
-<ul>
-<li>字符串比较</li>
-</ul>
+<!-- prettier-ignore-start -->
+
+<dl>
+<dt>字符串比较</dt>
+<dd>
 <table>
 <thead>
 <tr>
@@ -1872,7 +2112,7 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 <tbody>
 <tr>
 <td><code>string1 = string2</code></td>
-<td>如果两个串相等，则结果为真 (true: 0)</td>
+<td>如果两个串相等，则结果为真（true: 0）</td>
 </tr>
 <tr>
 <td><code>string1 != string2</code></td>
@@ -1888,9 +2128,9 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </tr>
 </tbody>
 </table>
-<ul>
-<li>数值比较</li>
-</ul>
+</dd>
+<dt>数值比较</dt>
+<dd>
 <p>表达式：<code>int1 [option] int2</code>，其中的参数可以用下列替换。</p>
 <table>
 <thead>
@@ -1926,9 +2166,9 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </tr>
 </tbody>
 </table>
-<ul>
-<li>文件状态</li>
-</ul>
+</dd>
+<dt>文件状态</dt>
+<dd>
 <table>
 <thead>
 <tr>
@@ -1963,9 +2203,9 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </tr>
 </tbody>
 </table>
-<ul>
-<li>复合逻辑表达式</li>
-</ul>
+</dd>
+<dt>复合逻辑表达式</dt>
+<dd>
 <table>
 <thead>
 <tr>
@@ -1988,24 +2228,30 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </tr>
 </tbody>
 </table>
-<h4 id="flow-control">流程控制<a class="headerlink" href="#flow-control" title="Permanent link">&para;</a></h4>
-<ul>
-<li>if</li>
-</ul>
-<p>序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 <code>fi</code> 就是 <code>if</code> 倒过来写，后面还会遇到类似的。</p>
+</dd>
+</dl>
+<!-- prettier-ignore-end -->
+
+<h3 id="flow-control">流程控制<a class="headerlink" href="#flow-control" title="Permanent link">&para;</a></h3>
+<!-- prettier-ignore-start -->
+
+<dl>
+<dt>条件分支：if</dt>
+<dd>
+<p>序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 <code>fi</code> 就是 <code>if</code> 倒过来写，后面还会遇到类似的结束符。</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span> condition1
 <span class="k">then</span>
-  command1
+  commands1
 <span class="k">elif</span> condition2
 <span class="k">then</span>
-  command2
+  commands2
 <span class="k">else</span>
-  command3
+  commands3
 <span class="k">fi</span>
 </code></pre></div>
-<ul>
-<li>case</li>
-</ul>
+</dd>
+<dt>按值选择：case</dt>
+<dd>
 <p>选项值必须以右括号 <code>)</code> 结尾，若匹配多个离散值，用 <code>|</code> 分隔。这里的 <code>esac</code> 也是 <code>case</code> 倒着写。</p>
 <div class="highlight"><pre><span></span><code><span class="k">case</span> &lt;variable&gt; <span class="k">in</span>
 value1<span class="p">|</span>value2<span class="o">)</span>
@@ -2020,26 +2266,40 @@ value3<span class="o">)</span>
   <span class="p">;;</span>
 <span class="k">esac</span>
 </code></pre></div>
-<ul>
-<li>for</li>
-</ul>
+</dd>
+<dt>枚举循环：for</dt>
+<dd>
+<p>for 循环可以对一个列表中的每个值都执行一系列命令。</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> var <span class="k">in</span> list
 <span class="k">do</span>
   commands <span class="nv">$var</span>
 <span class="k">done</span>
 </code></pre></div>
-<ul>
-<li>while</li>
-</ul>
-<p>while 循环用于不断执行一系列命令，命令通常为测试条件。</p>
+</dd>
+<dt>条件循环：while 和 until</dt>
+<dd>
+<p>while 循环用于不断执行一系列命令，命令通常为测试条件。until 与 while 相反，仅在测试条件失败时循环。</p>
 <div class="highlight"><pre><span></span><code><span class="k">while</span> condition
 <span class="k">do</span>
   commands
 <span class="k">done</span>
+
+<span class="k">until</span> condition
+<span class="k">do</span>
+  commands
+<span class="k">done</span>
 </code></pre></div>
-<details class="example"><summary>流程控制样例脚本</summary><div class="highlight"><pre><span></span><code><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
-<span class="nb">read</span> -p <span class="s2">&quot;Enter Number between (5 to 9) : &quot;</span> MAX_NO
-<span class="k">if</span> ! <span class="o">[</span> <span class="nv">$MAX_NO</span> -ge <span class="m">5</span> -a <span class="nv">$MAX_NO</span> -le <span class="m">9</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</dd>
+</dl>
+<!-- prettier-ignore-end -->
+
+<details class="example">
+<summary>流程控制样例</summary>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">read</span> -r -p <span class="s2">&quot;Enter Number between (5 to 9) : &quot;</span> MAX_NO
+<span class="k">if</span> ! <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$MAX_NO</span><span class="s2">&quot;</span> -ge <span class="m">5</span> -a <span class="s2">&quot;</span><span class="nv">$MAX_NO</span><span class="s2">&quot;</span> -le <span class="m">9</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
   <span class="nb">echo</span> <span class="s2">&quot;I ask to enter number between 5 and 9, Okay&quot;</span>
   <span class="nb">exit</span> <span class="m">1</span>
 <span class="k">fi</span>
@@ -2095,44 +2355,46 @@ clear
          .
 </code></pre></div>
 </details>
-<p>除此之外，用于流程控制的还有 <code>until</code>（处理与 <code>while</code> 恰恰相反）、在 C 语言中同样常见的 <code>break n</code> 和 <code>continute n</code>（参数 <code>n</code> 均表示跳过 n 层循环）。</p>
-<h4 id="functions">函数<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h4>
+<p>除此之外，用于流程控制的还有在 C 语言中同样常见的 <code>break</code> 和 <code>continue</code>。与 C 语言不同的是，它们还接受一个数字作为参数，即 <code>break n</code> 和 <code>continue n</code>，其中参数 <code>n</code> 均表示跳出或跳过 n 层循环。</p>
+<h3 id="functions">函数<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
 <p>与其他编程语言类似，shell 也可以定义函数。其定义格式为：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># POSIX syntax</span>
 name<span class="o">()</span> <span class="o">{</span>
-    actions
+    commands
     <span class="o">[</span><span class="k">return</span> &lt;int&gt;<span class="o">]</span>
 <span class="o">}</span>
 
 <span class="c1"># Bash syntax</span>
-funcion name <span class="o">{</span>
-    action
+<span class="k">function</span> name <span class="o">{</span>
+    commands
     <span class="o">[</span><span class="k">return</span> &lt;int&gt;<span class="o">]</span>
 <span class="o">}</span>
 </code></pre></div>
-<p>其中 function 和函数参数可以省略。返回参数可以显示用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
+<p>其中函数的参数可以像命令一样通过 <code>$1</code>、<code>$2</code>、<code>$3</code> 等获取，返回值可以显式用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
 <p>函数在使用前必须定义，因此应将函数定义放在脚本开始的部分。在调用函数时仅使用其函数名即可。</p>
-<details class="example"><summary>范例</summary><p>某带函数的某脚本程序内容如下：</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<details class="example">
+<summary>范例</summary>
+<p>某带函数的某脚本程序内容如下：</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 hello<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> <span class="s2">&quot;hello, today&#39;s date is `date`&quot;</span>
+  <span class="nb">echo</span> <span class="s2">&quot;hello </span><span class="nv">$1</span><span class="s2">, today&#39;s date is `date`&quot;</span>
 <span class="o">}</span>
 <span class="nb">echo</span> <span class="s2">&quot;going to call test function:&quot;</span>
-hello
+hello ustc
 </code></pre></div>
 <p>运行脚本，输出结果：</p>
 <div class="highlight"><pre><span></span><code>going to call test function:
-hello, today&#39;s date is &lt;当前日期显示输出串&gt;
+hello ustc, today&#39;s date is Tue Feb 22 22:22:22 CST 2022
 </code></pre></div>
 </details>
 <h3 id="bash-debugging">Bash 脚本调试<a class="headerlink" href="#bash-debugging" title="Permanent link">&para;</a></h3>
 <p>Bash shell 本身提供了调试方法：</p>
 <ul>
 <li>
-<p>命令行中：<code>$ sh -x script.sh</code>。</p>
+<p>命令行中：<code>$ bash -x script.sh</code>。</p>
 </li>
 <li>
-<p>脚本开头：<code>#!/bin/sh -x</code>。</p>
+<p>脚本开头：<code>#!/bin/bash -x</code>。</p>
 </li>
 <li>
 <p>在脚本中用 set 命令调整（<code>set -x</code> 启用，<code>set +x</code> 禁用）。</p>
@@ -2141,6 +2403,11 @@ hello, today&#39;s date is &lt;当前日期显示输出串&gt;
 <p>其中参数选项可以更改，<code>-n</code>：读一遍脚本中的命令但不执行，用于检查语法错误；<code>-v</code>：一边执行脚本、一边将执行过的脚本命令打印到标准输出；<code>-x</code>：提供跟踪执行信息，将执行的每一条命令和结果依次打印出来。注意避免几种调试选项混用。</p>
 <p>除了 Bash shell 内置的选项，还有 <a href="http://bashdb.sourceforge.net/">BASH Debugger</a>、<a href="https://github.com/koalaman/shellcheck">shellcheck</a> 等第三方脚本分析工具。</p>
 <h2 id="thinking-questions">思考题<a class="headerlink" href="#thinking-questions" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">I/O 重定向的小细节</p>
+<p><code>wc -l file</code> 和 <code>wc -l &lt; file</code> 输出有什么区别？为什么？</p>
+<p><code>echo &lt; file</code> 会输出什么？</p>
+</div>
 <div class="admonition question">
 <p class="admonition-title">设定 HTTP 请求头</p>
 <p>尝试查询 <code>curl</code> 和 <code>wget</code> 的文档，给出设定 HTTP 请求头的方法。</p>
@@ -2151,7 +2418,7 @@ User-Agent: curl/7.54.0
 Accept: */*
 </code></pre></div>
 <p>在 <code>GET / HTTP/1.1</code> 下面的几行就是 HTTP 请求头。</p>
-<p>HTTP 请求头在向服务器发送 HTTP 请求时发出，包含了诸如访问服务的域名 (Host)、用户程序标识 (User-agent)、希望接收到的语言 (Accept-Language) 等各种信息。</p>
+<p>HTTP 请求头在向服务器发送 HTTP 请求时发出，包含了诸如访问服务的域名（Host）、用户程序标识（User-Agent）、希望接收到的语言（Accept-Language）等各种信息。</p>
 </div>
 <div class="admonition question">
 <p class="admonition-title">关于断点续传</p>
@@ -2186,28 +2453,29 @@ Accept: */*
 <li><a href="http://cn.linux.vbird.org">vbird</a></li>
 <li><a href="https://www.runoob.com/linux/linux-shell.html">runoob</a></li>
 <li><a href="https://man.linuxde.net">linuxde</a></li>
+<li><a href="https://www.gnu.org/software/bash/manual/html_node/Quoting.html">Bash Quoting</a></li>
 </ul>
-                
-              
-              
-                
-
 
               
             </article>
           </div>
         </div>
         
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    <nav class="md-footer__inner md-grid" aria-label="页脚">
       
-        <a href="../Ch05/solution/" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="../Ch05/solution/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 思考题解答" rel="prev">
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
           <div class="md-footer__title">
             <div class="md-ellipsis">
@@ -2220,7 +2488,8 @@ Accept: */*
         </a>
       
       
-        <a href="supplement/" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="supplement/" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2230,7 +2499,7 @@ Accept: */*
             </div>
           </div>
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
           </div>
         </a>
       
@@ -2238,32 +2507,42 @@ Accept: */*
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-        
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
-  <div class="md-footer-social">
+        <div class="md-social">
+  
+    
     
       
       
-        
-        
-      
-      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="lug.ustc.edu.cn" class="md-footer-social__link">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.543 7.25h2.733c.144-2.074.866-3.756 1.58-4.948.12-.197.237-.381.353-.552a6.506 6.506 0 0 0-4.666 5.5zm2.733 1.5H1.543a6.506 6.506 0 0 0 4.666 5.5 11.13 11.13 0 0 1-.352-.552c-.715-1.192-1.437-2.874-1.581-4.948zm1.504 0h4.44a9.637 9.637 0 0 1-1.363 4.177c-.306.51-.612.919-.857 1.215a9.978 9.978 0 0 1-.857-1.215A9.637 9.637 0 0 1 5.78 8.75zm4.44-1.5H5.78a9.637 9.637 0 0 1 1.363-4.177c.306-.51.612-.919.857-1.215.245.296.55.705.857 1.215A9.638 9.638 0 0 1 10.22 7.25zm1.504 1.5c-.144 2.074-.866 3.756-1.58 4.948-.12.197-.237.381-.353.552a6.506 6.506 0 0 0 4.666-5.5h-2.733zm2.733-1.5h-2.733c-.144-2.074-.866-3.756-1.58-4.948a11.738 11.738 0 0 0-.353-.552 6.506 6.506 0 0 1 4.666 5.5zM8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0z"/></svg>
-      </a>
     
-  </div>
-
+    <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="lug.ustc.edu.cn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.543 7.25h2.733c.144-2.074.866-3.756 1.58-4.948.12-.197.237-.381.353-.552a6.506 6.506 0 0 0-4.666 5.5zm2.733 1.5H1.543a6.506 6.506 0 0 0 4.666 5.5 11.13 11.13 0 0 1-.352-.552c-.715-1.192-1.437-2.874-1.581-4.948zm1.504 0h4.44a9.637 9.637 0 0 1-1.363 4.177c-.306.51-.612.919-.857 1.215a9.978 9.978 0 0 1-.857-1.215A9.637 9.637 0 0 1 5.78 8.75zm4.44-1.5H5.78a9.637 9.637 0 0 1 1.363-4.177c.306-.51.612-.919.857-1.215.245.296.55.705.857 1.215A9.638 9.638 0 0 1 10.22 7.25zm1.504 1.5c-.144 2.074-.866 3.756-1.58 4.948-.12.197-.237.381-.353.552a6.506 6.506 0 0 0 4.666-5.5h-2.733zm2.733-1.5h-2.733c-.144-2.074-.866-3.756-1.58-4.948a11.738 11.738 0 0 0-.353-.552 6.506 6.506 0 0 1 4.666 5.5zM8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/ustclug" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -2272,12 +2551,10 @@ Accept: */*
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+      <script src="../assets/javascripts/bundle.3a4b43e5.min.js"></script>
       
     
   </body>
