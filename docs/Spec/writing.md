@@ -60,14 +60,14 @@
 
     由于 Prettier 的解析方式问题，请在所有提示框的起始行后面添加一个空行，**不要像 Material 主题官网那样没有空行直接开始提示框内容**。
 
-    :fontawesome-solid-times-circle:{: .orangered } **错误**格式：
+    :fontawesome-solid-circle-xmark:{: .orangered } **错误**格式：
 
     ```markdown
     !!! note
         提示框内容
     ```
 
-    :fontawesome-solid-check-circle:{: .limegreen } **正确**格式：
+    :fontawesome-solid-circle-check:{: .limegreen } **正确**格式：
 
     ```markdown
     !!! note
@@ -154,7 +154,7 @@ Linux 的知识结构呈非线性，仅有单线的正文是不足的。请广�
 
 !!! quote "中文文案排版规范"
 
-    请参考 [该规范](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-CN.md) 来统一最基本的中英文排版格式。
+    请参考 [该规范](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-Hans.md) 来统一最基本的中英文排版格式。
 
     使用形如 `!!! quote "小知识"` 的方式添加一个引用框。
 

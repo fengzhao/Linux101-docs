@@ -1,3 +1,7 @@
+---
+icon: material/xml
+---
+
 # Linux 上的编程
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
@@ -173,7 +177,7 @@ Hello World!
 !!! tip "gcc 的四个部分，编译的过程"
 
     gcc 的编译其实是四个过程的集合，分别是预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking），
-    分别由 cpp、cc1、ar、ld 这四个程序完成，gcc 是它们的封装。
+    分别由 cpp、cc1、as、ld 这四个程序完成，gcc 是它们的封装。
 
     这四个过程分别完成：处理 `#` 开头的预编译指令、将源码编译为汇编代码、将汇编代码编译为二进制代码、组合众多二进制代码生成可执行文件，
     也可分别调用 `gcc -E`、`gcc -S`、`gcc -c`、`gcc` 来完成。
@@ -253,8 +257,8 @@ CMake 在默认情况下，可以通过 `cmake` 命令生成 Makefile，再进�
 
 对于 CMake 的讲解已经超出了本课程的讲解范围。
 CMake 作为一个足够成熟、也足够陈旧的工具，既有历史遗留问题，也有新时代下的新思路。
-正如 C++ 和 Morden C++，CMake 也有 Morden CMake，更有像微软 vcpkg 那样新的辅助工具和解决方案。
-如果你想了解 CMake 的一些知识，附录将会有简单的介绍，亦可以考虑看一些较新的、关于 Morden CMake 的博客，以及官方的最新文档。
+正如 C++ 和 Modern C++，CMake 也有 Modern CMake，更有像微软 vcpkg 那样新的辅助工具和解决方案。
+如果你想了解 CMake 的一些知识，附录将会有简单的介绍，亦可以考虑看一些较新的、关于 Modern CMake 的博客，以及官方的最新文档。
 
 另一个值得一提的是 ninja。ninja 和 Makefile、autoconf 较类似，是构建工具，所属抽象层次低于 CMake。
 ninja 的特点的是相较与 Makefile 更快，对于多线程编译的支持更好。
@@ -361,7 +365,7 @@ $ pip3 install -r requirements.txt
 
 此方案简单明了，易于使用，但对于依赖的处理能力不足。
 
-#### setuptools：setup.py {#py-setup}
+#### setuptools: setup.py {#py-setup}
 
 在 PyPI，即 pip 获取 Python 包的来源中，使用 setuptools 是主流选择。
 setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packaging）的事实标准。
@@ -438,7 +442,7 @@ $ python3 -m venv venv
 ### Python 的版本 {#py-versions}
 
 正如我们之前所讲，Python 不是一个新的编程语言。
-现在的 Python，最新的版本已到 3.8。
+现在的 Python，最新的版本已到 3.11（截至 2022 年末）。
 实际上还在使用中的 Python，主要在 2.7 以及 3.5 以上这个区间内。
 
 Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本可以看作两个不同的编程语言。
@@ -452,8 +456,15 @@ Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本�
 实际上，Python 2 已在 2020 年初正式宣告停止维护，
 现在如果我们要使用 Python，最好使用 3 版本。
 
-而在 Python 3.x 版本中，截至 2021 年末，3.6 亦已经 EOL（end of life），
-因此实际上选用 Python 3.7 及以上者更稳妥。
+而在 Python 3.x 版本中，截至 2023 年末，3.7 亦已经 EOL（end of life）。
+
+!!! tip "我应该选择哪个版本的 Python？"
+
+    Python 3.x 已经迭代到一个相对稳定的阶段，如果你没有特殊需求，请使用 Python 3.x 的最新版本。
+
+    截止到 2024 年 5 月，我们推荐 Python 3.11。(或者使用系统自带的版本)
+
+    你可以在 [Status of Python versions](https://devguide.python.org/versions/) 查看 Python 各个版本的状态。
 
 ### Python 的其他实现 {#py-implementations}
 

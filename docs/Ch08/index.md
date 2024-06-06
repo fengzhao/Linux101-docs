@@ -1,3 +1,7 @@
+---
+icon: simple/docker
+---
+
 # Docker
 
 !!! Warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
@@ -149,7 +153,7 @@ For more examples and ideas, visit:
 
 在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。
 
-如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 或者 `docker container ls` 查看系统中所有的容器。
+如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 查看系统中所有的容器。
 
 ```console
 $ sudo docker ps -a
@@ -254,11 +258,11 @@ Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。�
 FROM debian:buster-slim
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
-    apt update && apt install -y gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross \
-                                 binutils-riscv64-linux-gnu libstdc++-dev-riscv64-cross \
-                                 qemu-system-misc qemu-user-static qemu-user binfmt-support \
-                                 fish vim --no-install-recommends
-RUN mkdir /workspace/
+    apt update && apt install -y --no-install-recommends \
+        gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross \
+        binutils-riscv64-linux-gnu libstdc++-dev-riscv64-cross \
+        qemu-system-misc qemu-user-static qemu-user binfmt-support \
+        fish vim
 
 WORKDIR /workspace/
 ENV QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/

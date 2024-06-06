@@ -1,3 +1,7 @@
+---
+icon: simple/linux
+---
+
 # 初识 Linux
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
@@ -224,11 +228,20 @@ Android TV 图标
 
 Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其体积更小，性能需求更少，因此十分适合各种不同性能的电脑安装使用。本书的编写组已经制作了 Xubuntu 的虚拟机镜像，供读者按需求下载使用。
 
+-   （推荐）Xubuntu 22.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-22.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-22.04-amd64.ova)）
 -   Xubuntu 20.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova)）
--   Xubuntu 18.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-amd64.ova)）
--   Xubuntu 18.04 32 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-i386.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-i386.ova)）
 
-推荐选用和自己系统字长相匹配的镜像。如果不确定自己的电脑是 32 位还是 64 位，可选择 32 位版。
+目前 Ubuntu 已经不再提供 32 位字长的镜像支持，64 位的镜像可以在绝大部分计算机上运行，并且仍然支持运行 32 位的应用。
+
+!!! tip "虚拟机镜像常见问题"
+
+    我们在拓展阅读中添加了[虚拟机镜像常见问题](supplement.md#vm-faq)，供读者参考。
+
+??? tip "有关虚拟机构建的信息"
+
+    自 Xubuntu 22.04 开始，我们提供的虚拟机镜像由程序自动构建，相关代码可参见 [101strap](https://github.com/ustclug/101strap)。在构建镜像时，我们对 Xubuntu 进行了一些定制与精简，以期在一般的硬件环境下也可流畅使用。
+
+    如果在使用自动构建的虚拟机镜像时遇到问题，欢迎在 [101strap 仓库的 issues](https://github.com/ustclug/101strap/issues) 中反馈。
 
 ??? tip "Xubuntu"
 
@@ -252,11 +265,29 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 -   [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
 -   [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
 
+??? tip "Windows 下使用 VirtualBox"
+
+    安装过程基本与 macOS 下安装 VirtualBox 一致，也可以参考 Windows 安装 VMware，两者大致相当；共享文件夹等功能可参考 [macOS 下 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB-1)。
+
+    ![](images/VirtualBox-Create-VM.jpg)
+
+    VirtualBox 新建界面
+    {: .caption }
+
 对于日常惯用 Windows 10 及以上版本的用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
+
+!!! warning
+
+    请注意，本节中在 macOS 下安装虚拟机的步骤只适用于使用 Intel 处理器的 Mac。如果你使用的是基于 Apple Silicon 的 Mac，请参见[在使用 Apple Silicon 处理器的机型上配置 Linux 虚拟机](supplement.md#configure-vm-in-apple-silicon)。
 
 ### 启动虚拟机 {#start-vm}
 
 若已经安装了上述虚拟机管理软件，则可以直接双击打开虚拟机镜像，管理软件会打开并导入该镜像，导入完毕后可直接点击开始按钮启动。
+
+![](images/VirtualBox-import.jpg)
+
+VirtualBox 导入设置（需要手动选择镜像）
+{: .caption }
 
 ![](images/VWP-Xubuntu-32bit-Login.png)
 

@@ -1,3 +1,7 @@
+---
+icon: material/server-network
+---
+
 # 网络、文本处理工具与 Shell 脚本
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
@@ -271,7 +275,7 @@ $ grep -R 'hello' .  # 递归查找当前目录下内容包含 hello 的文件
 
 ```shell
 $ sed 's/hello/world/g' file  # 将文件 file 中的 hello 全局（global）替换为 world 后输出
-$ sed 's/hello/world/' file  # 将文件 file 中第一个出现的 hello 替换为 world 后输出
+$ sed 's/hello/world/' file  # 将文件 file 的每一行第一个出现的 hello 替换为 world 后输出
 $ echo 'helloworld' | sed 's/hello/world/g'  # 管道也是可以的
 $ sed -i 's/hello/world/g' file  # -i 参数会直接写入文件，操作前记得备份哦！
 $ sed -i.bak 's/hello/world/g' file  # 当然，也可以让 sed 帮你备份到 file.bak
@@ -324,6 +328,12 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
 （以下省略）
 ```
 
+!!! tip "其他 shell 的 alias"
+
+    除了 bash 以外，其他的 shell 也有 alias 的支持。例如在 zsh 中也可以使用 `alias` 命令查看所有的 alias 列表。
+
+    部分 shell 会自带一些 alias，例如 [fish 中的 `ll` 就是 `ls -lh` 的别名](https://github.com/fish-shell/fish-shell/blob/daf96a35b57f52eea19302f615283e7c1486ab8c/share/functions/ll.fish#L5)。特别地，Windows 自带的 PowerShell 中的 alias 存在一些争议，例如其对 `curl` 的 alias 实际上是 `Invoke-WebRequest`，而这个命令和上文介绍的 curl 的行为完全不同，给用户带来了困惑。
+
 ### Bash 脚本的运行 {#run-bash-script}
 
 可以使用几种方法运行 Bash 脚本：
@@ -334,18 +344,24 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
     $ bash show.sh [option]
     ```
 
--   使用 `.` 命令执行脚本。与其他命令一样，`.` 也是一条命令，其后要有空格：
-
-    ```shell
-    $ . ./show.sh [option]
-    ```
-
 -   将脚本设置为可执行，然后像外部命令一样执行：
 
     ```shell
     $ chmod a+x show.sh
     $ ./show.sh [option]
     ```
+
+!!! tip "关于 `.` 命令"
+
+    与直接执行脚本，或者指定 shell 执行脚本不同，使用 `.` 命令执行脚本会在当前 shell 中执行脚本，而不是新建一个 shell 去执行脚本。这意味着，脚本中的变量定义、函数定义等都会在当前 shell 中生效。
+
+    在 bash 中，`source` 命令与 `.` 命令等价。有些情况下，使用 `.` 执行脚本是有必要的，例如在激活 Python 的虚拟环境时：
+
+    ```shell
+    . venv/bin/activate
+    ```
+
+    但是绝大多数时候，如果不清楚 `.` 或 `source` 命令的行为，不建议使用这种方式执行脚本。
 
 许多 Bash 脚本会在文件首行加上 `#!/bin/bash` 。这里 `#!` 符号的名称是 shebang（也叫 sha-bang，即 sharp `#` 与 bang `!`）。当一个文本文件首行有 shebang，且以可执行模式执行时，shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。
 
@@ -489,11 +505,11 @@ $ # B=1 的环境变量定义仅对该命令有效
 
     ```console
     $ set one two three
-    $ echo $1 $2 $3
-    one two three
+    $ echo $1,$2,$3
+    one,two,three
     $ shift 2
-    $ echo $1 $2 $3
-    three
+    $ echo $1,$2,$3
+    three,,
     $ # 此时 $2 和 $3 已不存在
     ```
 
@@ -930,7 +946,7 @@ Bash shell 本身提供了调试方法：
 
 !!! question "Shell 脚本编写练习 #3 (难)"
 
-    建议阅读[第九章](../Ch09)后再尝试完成本题。
+    建议阅读[第九章](../Ch09/index.md)后再尝试完成本题。
 
     尝试编写一个 shell 脚本，下载某个网页上所有的 PDF 文件（例如 [2019年春季全校《电磁学》小论文竞赛获奖名单](http://staff.ustc.edu.cn/~bjye/em/student/2019S/2019S.htm) 这个网页）。已知所有的文件都以小写的 `.pdf` 结尾，并且都在 `a` 标签的 `href` 属性中。
 
