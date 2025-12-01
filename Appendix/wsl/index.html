@@ -12,13 +12,11 @@
         <meta name="author" content="LUG@USTC">
       
       
-        <link rel="canonical" href="https://101.lug.ustc.edu.cn/Ch01/solution/">
+        <link rel="canonical" href="https://101.lug.ustc.edu.cn/Appendix/wsl/">
       
       
-        <link rel="prev" href="../supplement/">
+        <link rel="prev" href="../distribution/">
       
-      
-        <link rel="next" href="../../Ch02/">
       
       
         
@@ -29,7 +27,7 @@
     
     
       
-        <title>思考题解答 - Linux 101</title>
+        <title>使用 WSL 安装 Linux - Linux 101</title>
       
     
     
@@ -90,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#solution" class="md-skip">
+        <a href="#windows-subsystem-for-linux" class="md-skip">
           跳转至
         </a>
       
@@ -126,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              思考题解答
+              使用 WSL 安装 Linux
             
           </span>
         </div>
@@ -516,8 +514,6 @@
       
   
   
-    
-  
   
   
     
@@ -535,15 +531,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../Ch01/" class="md-nav__link ">
               
   
   
@@ -569,7 +565,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -589,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../supplement/" class="md-nav__link">
+      <a href="../../Ch01/supplement/" class="md-nav__link">
         
   
   
@@ -616,39 +612,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 2H4c-.53 0-1.04.21-1.41.59C2.21 2.96 2 3.47 2 4v12c0 .53.21 1.04.59 1.41.37.38.88.59 1.41.59h4l4 4 4-4h4c.53 0 1.04-.21 1.41-.59S22 16.53 22 16V4c0-.53-.21-1.04-.59-1.41C21.04 2.21 20.53 2 20 2m-9.95 4.04c.54-.36 1.25-.54 2.14-.54.94 0 1.69.21 2.23.62q.81.63.81 1.68c0 .44-.15.83-.44 1.2-.29.36-.67.64-1.13.85-.26.15-.43.3-.52.47-.09.18-.14.4-.14.68h-2c0-.5.1-.84.29-1.08.21-.24.55-.52 1.07-.84.26-.14.47-.32.64-.54.14-.21.22-.46.22-.74 0-.3-.09-.52-.27-.69-.18-.18-.45-.26-.76-.26-.27 0-.49.07-.69.21-.16.14-.26.35-.26.63H9.27c-.05-.69.23-1.29.78-1.65M11 14v-2h2v2Z"/></svg>
-  
-  <span class="md-ellipsis">
-    
-  
-    思考题解答
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../Ch01/solution/" class="md-nav__link">
         
   
   
@@ -666,70 +633,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#performance-increase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        计算机性能的增长
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#free-vs-free" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        免费软件和自由软件
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#copyleft" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        著作传
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        引用来源
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1730,8 +1633,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1747,11 +1652,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
         
           
           <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
@@ -1772,7 +1677,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1790,7 +1695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Appendix/markdown/" class="md-nav__link">
+      <a href="../markdown/" class="md-nav__link">
         
   
   
@@ -1818,7 +1723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Appendix/man/" class="md-nav__link">
+      <a href="../man/" class="md-nav__link">
         
   
   
@@ -1846,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Appendix/distribution/" class="md-nav__link">
+      <a href="../distribution/" class="md-nav__link">
         
   
   
@@ -1871,10 +1776,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../Appendix/wsl/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 WSL 安装 Linux
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1890,6 +1822,232 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自动安装方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手动安装
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="手动安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-windows-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启用 WSL 和虚拟化平台
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-linux-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装 Linux 内核
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-default-wsl-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设置 WSL 2 为默认的 WSL 版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-distro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装发行版
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装发行版">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-distro-msstore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从微软商店下载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-distro-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手动安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vscode-remote-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetbrains-remote-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JetBrains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-folder-in-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 WSL 中使用资源管理器打开文件夹
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知的问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="已知的问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32-bit-exe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行 32 位应用程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mnt-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WSL 下 /mnt/ 性能问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1929,46 +2087,208 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#performance-increase" class="md-nav__link">
+  <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
       
-        计算机性能的增长
+        安装
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自动安装方法
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#free-vs-free" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#install-manual" class="md-nav__link">
     <span class="md-ellipsis">
       
-        免费软件和自由软件
+        手动安装
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="手动安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-windows-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启用 WSL 和虚拟化平台
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#copyleft" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#install-linux-kernel" class="md-nav__link">
     <span class="md-ellipsis">
       
-        著作传
+        安装 Linux 内核
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#set-default-wsl-version" class="md-nav__link">
     <span class="md-ellipsis">
       
-        引用来源
+        设置 WSL 2 为默认的 WSL 版本
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-distro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装发行版
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装发行版">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-distro-msstore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从微软商店下载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-distro-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手动安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vscode-remote-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetbrains-remote-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JetBrains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-folder-in-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 WSL 中使用资源管理器打开文件夹
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知的问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="已知的问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32-bit-exe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行 32 位应用程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mnt-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WSL 下 /mnt/ 性能问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1989,7 +2309,7 @@
 
 
   
-    <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch01/solution.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Appendix/wsl.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1998,108 +2318,87 @@
     
       
     
-    <a href="https://github.com/ustclug/Linux101-docs/raw/master/docs/Ch01/solution.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/ustclug/Linux101-docs/raw/master/docs/Appendix/wsl.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="solution">思考题解答<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h1>
-<h2 id="performance-increase">计算机性能的增长<a class="headerlink" href="#performance-increase" title="Permanent link">&para;</a></h2>
-<div class="admonition tip">
-<p class="admonition-title">提示</p>
-<p>本题在书中没有答案，并且计算机性能的时代也不存在十分明确的分界线。所以本题可算作一个开放题，并且鼓励各位读者自行查阅资料来形成自己的答案。</p>
-<p>本题与计算机的体系结构比较相关，建议读者查阅的时候可以以此为关键词。</p>
+<h1 id="windows-subsystem-for-linux">Windows Subsystem for Linux<a class="headerlink" href="#windows-subsystem-for-linux" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">本文仍在编辑中，尚未校对、审阅和修订</p>
 </div>
-<details class="info">
-<summary>解答</summary>
-<p><strong>(1)</strong></p>
-<p>计算机的指数增长时代大致可以认为由 2 个阶段构成：</p>
-<ul>
-<li>
-<p>复杂指令集阶段：这个阶段是大规模集成电路阶段的开始。在这个阶段，得益于电路的集成度大幅度提升，计算机的性能也成指数级增长。这个阶段大致的时间范围是 1978 - 1986 年，平均每年性能提升 22%。</p>
-</li>
-<li>
-<p>精简指令集阶段：随着时间的推移，人们发现许多指令通常都用不到，但它们的存在让处理器不得不采用更复杂的结构，因此研究员开始提倡精简之前的指令集架构以简化处理器。在使用了精简后的指令集架构后，计算机的性能相较之前有了飞跃般的提升（最初在 IBM 360 指令集架构上是 3 倍）。同时，集成电路的密度依然在继续增加，且在这个阶段开发人员通过大力改进“指令级并行”以提升性能，因此此时计算机的性能以更快的速度增长。这个阶段大致的时间范围是 1986 - 2003 年，平均每年性能提升 52%，是计算机科技的黄金时代。</p>
-</li>
-</ul>
-<p><strong>(2)</strong></p>
-<p>计算机指数增长的黄金年代之所以能长期保持，主要还是因为集成电路的密度可以稳定大幅度提升。罗伯特·丹纳德（Robert Dennard）归纳了一个规律，被称之为丹纳德标度（Dennard Scaling）：“在晶体管的密度增加的时候，单个晶体管的功耗会下降，这样下来可以保持晶体管的功耗密度（每单位面积的功耗）不变”。根据这条规律，在晶体管密度增加的同时，计算机性能会提升（正比例于晶体管数目），但功耗不变，因此计算机的能量利用率会越来越高。</p>
-<p>不过，这条规律没有考虑到一些重要的问题。一个问题是晶体管的“漏电电流”（微安级别），即晶体管在工作时会有轻微漏电，这些漏电会导致处理器发热，如果不加以控制会造成严重的散热问题。当然，可以通过降低电压的方法来减少散热，但此时也出现了第二个问题，即是晶体管的“阈值电压”（大约是 0.7 ~ 0.8 伏），可以理解成最低工作电压，低于此电压晶体管不再工作。这两个问题导致了晶体管存在一个不可跨越的最低功率（以及最低发热功率），从而使得丹纳德标度失效。进一步增加密度将需要更多能耗而不再恒定，也会导致散热问题。因此，为了避免这个问题，芯片厂商研究了多核处理器来达到并行的效果，从而进入了多核时代。</p>
-<ul>
-<li>后丹纳德标度阶段：这是多核时代的第一个阶段，这个阶段计算机性能提升的主要因素是采用了多核处理器，通过并行的方式提升计算机的性能。这个阶段大致的时间范围是 2003 - 2011 年，平均每年性能提升 23%，相比之前的 52% 是一个巨大的跌落。</li>
-</ul>
-<p><strong>(3)</strong></p>
-<p>在多核时代，操作系统显然需要适应多核处理器，而其中一个最重要的能力就是进行并行任务调度，即将任务按合适的方式交付给不同的核来同时完成以尽可能充分利用并行的优势。</p>
-<p><strong>题外话</strong></p>
-<p>然而，核并不是越多越好的，因为一个任务总会有一些先后次序是不能颠倒的，所以这些部分就必须串行运行。就算假设一个任务能并行的部分可以被完美地平均切分而并行执行，剩余的串行部分也无法利用到并行的任何收益（而且往往过度的并行反而降低效率），因此增加更多核的收益会越来越低。这种规律被称之为阿姆达尔定律（Amdahl's Law），核的数目越多，越受到阿姆达尔定律的限制。</p>
-<ul>
-<li>阿姆达尔定律阶段：这是多核时代的第二个阶段，这个阶段标志着多核所带来的性能提升已经越来越不明显了。这个阶段大致的时间范围是 2011 - 2015 年，平均每年性能提升只有 12%。</li>
-</ul>
-<p>在 2015 年以后，平均每年的性能提升更是暴跌至 3%，似乎大规模集成电路计算机的性能提升已经快到了尽头，因此又被称为终结阶段。</p>
-<p><img alt="" src="../images/Performance-Era.jpg" /></p>
-<p class="caption">大规模集成电路计算机性能的五个阶段</p>
-</details>
-<h2 id="free-vs-free">免费软件和自由软件<a class="headerlink" href="#free-vs-free" title="Permanent link">&para;</a></h2>
-<div class="admonition tip">
-<p class="admonition-title">提示</p>
-<p>要回答本题，需要明确了解“自由软件”的概念。依据自由软件基金会的定义，自由软件是一类可以不受限制地自由使用、复制、研究、修改和分发的，尊重用户自由的软件。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>可以注意到这里的定义和免费没有什么关系。</p>
-<p>为了更好地理解这两种定义之间的关系，最好从正反两面举出几个实际例子。</p>
+<div class="admonition abstract">
+<p class="admonition-title">导言</p>
+<p>本章节将介绍在 Windows 上体验和使用 Linux 的较好的方法之一——Windows Subsystem for Linux。</p>
+<p>WSL 有着接近原生的性能、GPU 的支持和极易的安装方法，完整的 Linux 内核环境可以在涵盖绝大部分的 Linux 日常开发环境。</p>
 </div>
-<details class="info">
-<summary>解答</summary>
-<p>免费软件并不一定自由，因为免费的软件可能只是软件的所有者提供了免费许可，但并不一定也会同时允许用户自由地去研究、修改和分发。一些反例诸如：</p>
+<h2 id="install">安装<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
+<h3 id="install-auto">自动安装方法<a class="headerlink" href="#install-auto" title="Permanent link">&para;</a></h3>
+<p>在 Windows 10 Build 19041（Windows 10 2004）版本或以上，可以通过一条命令直接完成安装（需要以管理员身份运行）：</p>
+<div class="highlight"><pre><span></span><code>wsl<span class="w"> </span>--install
+</code></pre></div>
+<p>这条命令会完成如下几个操作：</p>
 <ul>
-<li>
-<p>QQ: 腾讯公司推出的免费即时通讯软件，在中国十分主流，不过显然腾讯公司从来没公开过 QQ 的源代码，也不允许用户去自行修改它。</p>
-</li>
-<li>
-<p>Adobe Reader：Adobe 公司推出的免费 PDF 阅读器，但该公司拥有该软件的所有权，并且此软件也不开源，不允许用户去修改。</p>
-</li>
-<li>
-<p>WPS Office：金山办公旗下的一系列办公软件的组合，它是免费的，但同样不允许用户研究和修改。</p>
-</li>
+<li>启用 WSL 和虚拟化平台</li>
+<li>下载并安装 WSL 的 Linux 内核</li>
+<li>设定 WSL 2 默认的版本</li>
+<li>从微软商店里面下载 Ubuntu 进行安装</li>
 </ul>
-<p>支持这个命题的例子不胜枚举，比如许多收费的专业软件的个人版、教育版或者社区版等都是免费但不自由的软件。</p>
-<p>自由软件也并不一定免费。虽然对于不少初接触的读者来说可能稍微难以想象：因为自由软件一般都是遵循自由软件协议开源的，谁都可以拿出去编译成自己的副本，似乎没有收费的余地。其实不然，一是自由软件的定义并不妨碍其收费，因此理论上想收费就可以收费；二是自由软件的发行商可以为顾客提供专业的技术服务，此时相当于买自由软件的这笔钱可以购买到专业技术支持。一个十分典型的例子就是本章中提到的 Red Hat 公司推出的 RHEL，它是收费的，但遵循 GPL 开源。使用 RHEL 源代码编译成的免费版本（再去掉 RHEL 本身包含的闭源软件和 Red Hat 商标信息）就是本章正文中提到的 CentOS 了。</p>
-</details>
-<h2 id="copyleft">著作传<a class="headerlink" href="#copyleft" title="Permanent link">&para;</a></h2>
-<div class="admonition tip">
-<p class="admonition-title">提示</p>
-<p>本题实质上仅要求读者了解“著作传”的定义和它与其它两种许可方式的区别，难度并不大。不过，本章正文中没有给出著作传的完整定义，因此本题鼓励读者自行查阅在线资料来掌握这个知识。</p>
-</div>
-<details class="info">
-<summary>解答</summary>
-<p>著作传的概念源于自由软件运动，是一种利用现有的“著作权”的体制来保障用户软件自由使用权利的许可方式。通常来说，著作传保证了任何用户都可以自由地使用、复制、修改和传播所许可的软件，不过基于这个软件的复制传播和修改后的再分发通常还必须以著作传的方式发布，即后续的用户也能享受到同等的自由。</p>
-<p>由上面的解释可见，著作传许可比通常的著作权提供的使用许可要宽容、自由得多，因此可能部分初次接触这个概念的读者会觉得这个许可方式和直接放出去让大家随便使用没什么区别，然而这种想法是不对的。事实上，著作传和著作权、公有领域的关系和区别有以下几个显著的要点：</p>
+<p>安装完毕之后可以直接通过 <code>ubuntu</code> 命令启动。</p>
+<h3 id="install-manual">手动安装<a class="headerlink" href="#install-manual" title="Permanent link">&para;</a></h3>
+<p>如果系统版本在 Windows 10 Build 19041 以下，如 Windows 10 LTSC 2019，需要手动配置系统。</p>
+<h4 id="enable-windows-features">启用 WSL 和虚拟化平台<a class="headerlink" href="#enable-windows-features" title="Permanent link">&para;</a></h4>
+<p>使用管理员身份在 Powershell 中运行：</p>
+<div class="highlight"><pre><span></span><code>Dism.exe /Online /Enable-feature /Featurename:Microsoft-Windows-Subsystem-Linux /All /NoRestart
+Dism.exe /Online /Enable-feature /Featurename:VirtualMachinePlatform /All /NoRestart
+</code></pre></div>
+<h4 id="install-linux-kernel">安装 Linux 内核<a class="headerlink" href="#install-linux-kernel" title="Permanent link">&para;</a></h4>
+<p>从微软下载 Linux 内核用于 Windows 的更新，并根据机器架构选择安装：</p>
 <ul>
-<li>
-<p>著作传虽然允许软件可以以很自由的方式给用户使用，但用户依然需要遵守著作传的许可，而不是像公有领域的产品一样可以完全随心所欲。著作传许可的一个典型特性就是要求它的传播和衍生还是要继续采用著作传许可，而不可以申请自己的著作权，也不能重新赋予新的许可。这种方法保证了这个软件的权利完全由人类共同体充分享受，不过这种方式也得到了一些反对声音，因为这种许可的传播方式看起来太像是病毒传染。</p>
-</li>
-<li>
-<p>著作传是利用了现有的著作权体系设立的，这说明著作传许可虽然自由，但实际上也可以认为是对软件的一种保护，是另一种“著作权”。这也说明了著作传理论是一种受到法律保护的许可（如果当地法律兼容的话），而不是某种大家自发遵守的倡议。不过和普通的著作权不同，著作传许可面向用户下放了许多权利，这是通常的著作权许可不会做的。</p>
-</li>
+<li><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">x64 内核</a>（绝大部分电脑）</li>
+<li><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">ARM64 内核</a>（使用高通等品牌 CPU 的电脑）</li>
 </ul>
-</details>
-<h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>定义来自维基百科条目：<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6">自由软件</a>。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<h4 id="set-default-wsl-version">设置 WSL 2 为默认的 WSL 版本<a class="headerlink" href="#set-default-wsl-version" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
+</code></pre></div>
+<h2 id="install-distro">安装发行版<a class="headerlink" href="#install-distro" title="Permanent link">&para;</a></h2>
+<p>有许多的方法安装一个新的发行版。</p>
+<h3 id="install-distro-msstore">从微软商店下载<a class="headerlink" href="#install-distro-msstore" title="Permanent link">&para;</a></h3>
+<p>在微软商店中直接搜索对应的发行版进行安装即可。这种方法仅支持一部分发行版，如 Ubuntu 和 Debian 等。</p>
+<p><img alt="Microsoft Store Search Result" src="../images/ms-store-search-linux.png" /></p>
+<p class="caption">图 1. Microsoft Store 搜素结果</p>
+<h3 id="install-distro-manual">手动安装<a class="headerlink" href="#install-distro-manual" title="Permanent link">&para;</a></h3>
+<p>有些发行版并未上架微软商店，但也有办法安装，比如可以参考下面这两个项目：</p>
+<ul>
+<li>Manjaro: <a href="https://github.com/sileshn/ManjaroWSL2">ManjaroWSL2</a></li>
+<li>Gentoo: <a href="https://github.com/VPraharsha03/GentooWSL2">GentooWSL2</a></li>
+</ul>
+<p>但需要注意，这种安装方式并非发行版官方支持。</p>
+<h2 id="usage">使用<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h3 id="vscode-remote-wsl">VS Code<a class="headerlink" href="#vscode-remote-wsl" title="Permanent link">&para;</a></h3>
+<p>在 VS Code 中安装插件 "WSL" 后，可以像 "Remote - SSH" 一样使用 WSL，或者也可以直接安装 "Remote Development" 插件，里面包含了 "WSL" 插件。</p>
+<p><img alt="VS Code Store &quot;WSL&quot;" src="../images/vscode-store-remote-wsl.png" /></p>
+<p class="caption">图 2. Visual Studio Code 搜索 "WSL"</p>
+<h3 id="jetbrains-remote-wsl">JetBrains<a class="headerlink" href="#jetbrains-remote-wsl" title="Permanent link">&para;</a></h3>
+<p>包括 IntelliJ IDEA、PyCharm、WebStorm 等，都有对 WSL 的支持。在打开了 WSL 下的目录后，
+会自动地选择 WSL 下的工具链，Git 会使用 WSL 中安装的 Git 而不是 Window 下的 Git。</p>
+<h3 id="open-folder-in-wsl">在 WSL 中使用资源管理器打开文件夹<a class="headerlink" href="#open-folder-in-wsl" title="Permanent link">&para;</a></h3>
+<p>在 WSL 的终端中，直接输入 <code>explorer.exe .</code>，会在当前目录下打开资源管理器，也可以使用 Windows 上的应用程序打开相应的文件。</p>
+<h2 id="known-issues">已知的问题<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
+<h3 id="32-bit-exe">运行 32 位应用程序<a class="headerlink" href="#32-bit-exe" title="Permanent link">&para;</a></h3>
+<p>由于实现原理，WSL 1 并不支持运行 32 位应用程序。WSL 2 由于是完整的 Linux 内核，在安装了对应的运行时后可以运行 32 位应用程序。</p>
+<h3 id="mnt-performance">WSL 下 <code>/mnt/</code> 性能问题<a class="headerlink" href="#mnt-performance" title="Permanent link">&para;</a></h3>
+<p>WSL 2 由于相当于是通过网络的方式访问 <code>/mnt/</code> 下的文件，导致性能相对于 WSL 1 有明显的下降。</p>
+<p>可以通过将文件放在 <code>/</code> 下（不包括 <code>/mnt/</code>），来提高性能。</p>
+<p>相关的 Issue 和评论：<a href="https://github.com/microsoft/WSL/issues/4197#issuecomment-604592340">microsoft/WSL#4197</a></p>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -2131,7 +2430,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../supplement/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 拓展阅读">
+          <a href="../distribution/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 其他的 Linux 发行版：技术差异简介">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2141,27 +2440,11 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                拓展阅读
+                其他的 Linux 发行版：技术差异简介
               </div>
             </div>
           </a>
         
-        
-          
-          <a href="../../Ch02/" class="md-footer__link md-footer__link--next" aria-label="下一页: 个性化配置与建站体验">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              <div class="md-ellipsis">
-                个性化配置与建站体验
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
         
       </nav>
     
