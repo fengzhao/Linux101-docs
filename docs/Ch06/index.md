@@ -81,15 +81,15 @@ sbin
 
 #### Wget 的特点 {#wget-features}
 
--   支持以非交互方式工作，能够在用户注销后在后台进行工作。
+- 支持以非交互方式工作，能够在用户注销后在后台进行工作。
 
--   在不稳定的连接中依旧可以正常工作，支持断点续传功能。
+- 在不稳定的连接中依旧可以正常工作，支持断点续传功能。
 
--   支持 HTML 页面以及 FTP 站点的递归检索，您可以使用它来获取网站的镜像，或者像爬虫一样遍历网络。
+- 支持 HTML 页面以及 FTP 站点的递归检索，您可以使用它来获取网站的镜像，或者像爬虫一样遍历网络。
 
--   在文件获取时可以增加时间标记，因此可以自动识别远程文件自上次检索后是否发生更改，并自动检索新版本。
+- 在文件获取时可以增加时间标记，因此可以自动识别远程文件自上次检索后是否发生更改，并自动检索新版本。
 
--   支持代理服务器，以减轻网络负载，加快检索速度。
+- 支持代理服务器，以减轻网络负载，加快检索速度。
 
 #### 使用 Wget {#wget-usage}
 
@@ -108,13 +108,13 @@ sbin
 
     批量下载 filelist.txt 中给出的链接：
 
-    ```shell
+    ```console
     $ wget -i filelist.txt
     ```
 
     安装 oh-my-zsh：
 
-    ```shell
+    ```console
     $ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
     ```
 
@@ -138,47 +138,57 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
 
     输出必应主页的代码：
 
-    ```shell
+    ```console
     $ curl "http://cn.bing.com"
     ```
 
     使用重定向把必应页面保存至 `bing.html` 本地：
 
-    ```shell
+    ```console
     $ curl "http://cn.bing.com" > bing.html
     ```
 
     也可以使用 `-o` 选项指定输出文件：
 
-    ```shell
+    ```console
     $ curl -o bing.html "http://cn.bing.com"
     ```
 
     下载 USTCLUG 的 logo：
 
-    ```shell
+    ```console
     $ curl -O "https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png"
     ```
 
     只展示 HTTP 响应头内容：
 
-    ```shell
+    ```console
     $ curl -I "http://cn.bing.com"
     ```
+
+!!! warning "关于从 Internet 获取的脚本"
+
+    直接通过 `curl` 或者 `wget` 等工具从 Internet 获取脚本然后通过管道传给 `sh` 等 Shell 执行是非常危险的操作。运行脚本前，请确保脚本是从正确的地址下载的，并仔细检查要执行的脚本内容。
 
 ### 其他 {#download-others}
 
 除了 Wget、cURL，还有 mwget（多线程版本 wget）、Axel、Aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 Aria2 在 Windows 下使用也很广泛。
 
+!!! warning "在 Windows 的 PowerShell 下使用 wget/curl"
+
+    Windows 自带的 PowerShell 出于一些奇怪的考虑，将 `wget` 和 `curl` 都 alias 成了 PowerShell 自己的 `Invoke-WebRequest`，而这个命令和上文介绍的 wget、curl 的行为完全不同，给用户带来了困惑。
+
+    如果你在 Windows 下安装了 `wget` 或 `curl`，可能需要使用 `wget.exe` 或 `curl.exe` 来调用它们。
+
 ## 文本处理 {#text-utils}
 
 在进行文本处理时，我们有一些常见的需求：
 
--   获取文本的行数、字数
--   比较两段文本的不同之处
--   查看文本的开头几行和最后几行
--   在文本中查找字符串
--   在文本中替换字符串
+- 获取文本的行数、字数
+- 比较两段文本的不同之处
+- 查看文本的开头几行和最后几行
+- 在文本中查找字符串
+- 在文本中替换字符串
 
 下面介绍如何在 shell 中做到这些事情。
 
@@ -186,7 +196,7 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
 
 `wc` 是文本统计的常用工具，它可以输出文本的行数、单词数与字符（字节）数。
 
-```shell
+```console
 $ wc file
      427    2768   20131 file
 ```
@@ -195,7 +205,7 @@ $ wc file
 
     `wc` 在统计中文文本时，会出现一些问题，比如：
 
-    ```shell
+    ```console
     $ echo '中文测试' | wc
     1       1      13
     ```
@@ -204,7 +214,7 @@ $ wc file
 
     对于字符数统计结果，可以使用 `wc -m` 命令要求 `wc` 考虑宽字符：
 
-    ```shell
+    ```console
     $ echo '中文测试' | wc -m
     5
     ```
@@ -217,7 +227,7 @@ $ wc file
 
 diff 工具用于比较两个文件的不同，并列出差异。
 
-```shell
+```console
 $ echo hello > file1
 $ echo hallo > file2
 $ diff file1 file1
@@ -240,9 +250,9 @@ $ diff file1 file2
 
 以 head 为例，这里给出共同的用法：
 
--   不加参数的时候默认显示前 10 行
--   `-n <NUM>` 指定行数，可简化为 `-<NUM>`
--   `-c <NUM>` 指定字节数
+- 不加参数的时候默认显示前 10 行
+- `-n <NUM>` 指定行数，可简化为 `-<NUM>`
+- `-c <NUM>` 指定字节数
 
 ```console
 $ head file  # 显示 file 前 10 行
@@ -269,11 +279,28 @@ $ grep -R 'hello' .  # 递归查找当前目录下内容包含 hello 的文件
 
     grep 事实上是非常强大的查找工具，[第九章](../Ch09/index.md)将在介绍正则表达式语法之后进一步介绍 grep。
 
+!!! tip "ripgrep"
+
+    除了 grep 以外，还有一个更快更强大的工具 [ripgrep](https://github.com/BurntSushi/ripgrep)。其会默认递归查找当前目录下的文件。安装 `ripgrep` 包后使用 `rg` 命令，即可作为 `grep -R` 的替代：
+
+    ```console
+    $ # 在 /etc/ 下搜索包含 localhost 的文件
+    $ rg localhost /etc/
+    /etc/hosts
+    1:127.0.0.1	localhost
+    2:::1	localhost
+
+    /etc/security/pam_env.conf
+    52:# to "localhost" rather than not being set at all
+    53:#REMOTEHOST	DEFAULT=localhost OVERRIDE=@{PAM_RHOST}
+    64:#NNTPSERVER	DEFAULT=localhost
+    ```
+
 ### 文本替换：sed {#sed}
 
 `sed` 命令可以替换文本中的字符串：
 
-```shell
+```console
 $ sed 's/hello/world/g' file  # 将文件 file 中的 hello 全局（global）替换为 world 后输出
 $ sed 's/hello/world/' file  # 将文件 file 的每一行第一个出现的 hello 替换为 world 后输出
 $ echo 'helloworld' | sed 's/hello/world/g'  # 管道也是可以的
@@ -283,7 +310,7 @@ $ sed -i.bak 's/hello/world/g' file  # 当然，也可以让 sed 帮你备份到
 
 对于大多数用户来说，最常用 `sed` 的场合是替换软件源的时候。在阅读了上面的示例之后，以下例子就很简单了：
 
-```shell
+```console
 $ sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 $ sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 $ sudo sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
@@ -309,7 +336,7 @@ Bash 允许用户定制环境以满足自己需要。通过修改环境文件 `.
 
 此外，bash 也支持使用 `alias` 别名代替命令关键字（`alias name='命令'`）。输入 `alias`，可以查看目前存在的别名：
 
-```shell
+```console
 $ alias
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias egrep='egrep --color=auto'
@@ -334,26 +361,35 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
 
     部分 shell 会自带一些 alias，例如 [fish 中的 `ll` 就是 `ls -lh` 的别名](https://github.com/fish-shell/fish-shell/blob/daf96a35b57f52eea19302f615283e7c1486ab8c/share/functions/ll.fish#L5)。特别地，Windows 自带的 PowerShell 中的 alias 存在一些争议，例如其对 `curl` 的 alias 实际上是 `Invoke-WebRequest`，而这个命令和上文介绍的 curl 的行为完全不同，给用户带来了困惑。
 
+!!! tip "检查命令是否被 alias"
+
+    如果发现某些命令的行为不符合预期，可以使用 `type` 命令检查该命令是否被 alias 了：
+
+    ```console
+    $ type ls
+    ls is aliased to `ls --color=auto'
+    ```
+
 ### Bash 脚本的运行 {#run-bash-script}
 
 可以使用几种方法运行 Bash 脚本：
 
--   在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数：
+- 在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数：
 
-    ```shell
+    ```console
     $ bash show.sh [option]
     ```
 
--   将脚本设置为可执行，然后像外部命令一样执行：
+- 将脚本设置为可执行，然后像外部命令一样执行：
 
-    ```shell
+    ```console
     $ chmod a+x show.sh
     $ ./show.sh [option]
     ```
 
 !!! tip "关于 `.` 命令"
 
-    与直接执行脚本，或者指定 shell 执行脚本不同，使用 `.` 命令执行脚本会在当前 shell 中执行脚本，而不是新建一个 shell 去执行脚本。这意味着，脚本中的变量定义、函数定义等都会在当前 shell 中生效。
+    与直接执行脚本，或者指定 shell 执行脚本不同，使用 `.` 命令执行脚本会在当前 shell 中执行脚本，而不是新建一个 shell 去执行脚本。这意味着，脚本中的变量赋值、函数定义以及切换目录（`cd` 命令）等变化都会在当前 shell 中生效。
 
     在 bash 中，`source` 命令与 `.` 命令等价。有些情况下，使用 `.` 执行脚本是有必要的，例如在激活 Python 的虚拟环境时：
 
@@ -367,6 +403,18 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
 
 例如，某个 `foo.sh` 首行为 `#!/bin/bash`，则执行 `./foo.sh` 就等于执行 `/bin/bash ./foo.sh`。
 
+??? question "没有 shebang 的脚本呢？"
+
+    你可能会注意到，有些脚本并没有 shebang，但是仍然可以在命令行中正常执行。这是因为尽管 Linux 操作系统无法识别这个脚本的解释器（Linux 要求合法的脚本文件前两个字节必须是 `#!`，否则返回 `ENOEXEC`），应用程序仍然可以自行采用不同的处理方式，例如：
+
+    1. 如果你当前使用的 shell 是 Bash，它会尝试启动一个新的 Bash 进程来执行该脚本。
+    2. 对于一些其他应用程序，如果它们使用的是 `execlp`, `execvp` 或 `execvpe` 等 C 语言库函数来运行其他程序的话，含有 `p` 后缀的 exec 系列函数会尝试调用 `/bin/sh` 来执行脚本。
+    3. 如果以上情况都不符合，那么程序可能会直接输出错误信息，例如：
+
+        ```text
+        ./foo.sh: Exec format error
+        ```
+
 Bash 也支持在同一个行中安排多个命令：
 
 | **分隔符**        | **说明**                                                             |
@@ -378,13 +426,13 @@ Bash 也支持在同一个行中安排多个命令：
 
 组命令：
 
--   使用 `{ 命令1; 命令2; … }`，组命令在 shell 内执行，不会产生新的进程，注意花括号和命令之间的空格。
+- 使用 `{ 命令1; 命令2; … }`，组命令在 shell 内执行，不会产生新的进程，注意花括号和命令之间的空格。
 
--   使用 `(命令1; 命令2; …)`，组命令会建立独立的 shell 子进程来执行组命令，这里的圆括号周围并不需要空格。
+- 使用 `(命令1; 命令2; …)`，组命令会建立独立的 shell 子进程来执行组命令，这里的圆括号周围并不需要空格。
 
 ??? example "组命令示例"
 
-    ```shell
+    ```console
     $ pwd  # 当前在家目录
     /home/ustc
     $ (cd /tmp; pwd;)
@@ -464,21 +512,21 @@ Bash 也支持在同一个行中安排多个命令：
 
 每个用户登录系统后，Linux 都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 Bash 中，可用 `env` 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：
 
--   `HOME`：用户主目录，一般情况下为 `/home/用户名`。
+- `HOME`：用户主目录，一般情况下为 `/home/用户名`。
 
--   `LOGNAME`：登录用户名。
+- `LOGNAME`：登录用户名。
 
--   `PATH`：命令搜索路径，路径以冒号分割。当我们输入命令名时，系统会在 `PATH` 变量中从前往后逐个搜索对应的程序是否在目录中。
+- `PATH`：命令搜索路径，路径以冒号分割。当我们输入命令名时，系统会在 `PATH` 变量中从前往后逐个搜索对应的程序是否在目录中。
 
--   `PWD`：用户当前工作目录路径。
+- `PWD`：用户当前工作目录路径。
 
--   `SHELL`：默认 shell 的路径名。
+- `SHELL`：默认 shell 的路径名。
 
--   `TERM`：使用的终端名。
+- `TERM`：使用的终端名。
 
 可以使用 `export` 命令来定义环境变量。在同一个 shell 中使用 `export` 定义之后，这个环境变量会一直保留，直到这个 shell 退出。
 
-```shell
+```console
 $ export A=1
 $ env | grep A=
 A=1
@@ -486,7 +534,7 @@ A=1
 
 此外，也可以在命令前加上环境变量的定义。此时只有这一条命令的环境变量出现变化。
 
-```shell
+```console
 $ B=1 env | grep B=
 B=1
 $ env | grep B=
@@ -495,11 +543,11 @@ $ # B=1 的环境变量定义仅对该命令有效
 
 #### 位置变量 {#bash-positional-parameters}
 
--   Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 `$1`、`$2`、`$3`、……、`$9`，程序名本身对应 `$0`。
+- Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 `$1`、`$2`、`$3`、……、`$9`，程序名本身对应 `$0`。
 
--   可用 `shift <n>` 命令，丢弃开头的 n 个位置变量，改变 `$1`、`$2`、`$3` 等的对应关系。
+- 可用 `shift <n>` 命令，丢弃开头的 n 个位置变量，改变 `$1`、`$2`、`$3` 等的对应关系。
 
--   可用 `set` 命令，重置整个位置变量列表，从而给 `$1`、`$2`、`$3` 等赋值。
+- 可用 `set` 命令，重置整个位置变量列表，从而给 `$1`、`$2`、`$3` 等赋值。
 
 ??? example "范例"
 
@@ -528,22 +576,20 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 #### 特殊字符 {#bash-special-tokens}
 
--   反斜杠，消除单个字符的特殊含义。
+- 反斜杠，消除单个字符的特殊含义。
+    - 包含空白字符（空格和制表符）、反斜杠本身、各种引号，以及 `$`、`!` 等。
+    - 与其他语言不同，shell 中反斜杠不会将普通字符转义为其他含义（例如 `\n` 不会被视作换行符）。
 
-    -   包含空白字符（空格和制表符）、反斜杠本身、各种引号，以及 `$`、`!` 等。
-    -   与其他语言不同，shell 中反斜杠不会将普通字符转义为其他含义（例如 `\n` 不会被视作换行符）。
+- 使用双引号包裹字符串可以消除空白字符切分参数的特殊含义，但是很多其他特殊字符的特殊含义仍然保留。双引号也被称为「弱引用」。
 
--   使用双引号包裹字符串可以消除空白字符切分参数的特殊含义，但是很多其他特殊字符的特殊含义仍然保留。双引号也被称为「弱引用」。
+- 单引号，能消除所有特殊字符的特殊含义，包括反斜杠，因此单引号字符串中不能使用反斜杠转义单引号本身。单引号也被称为「强引用」。
 
--   单引号，能消除所有特殊字符的特殊含义，包括反斜杠，因此单引号字符串中不能使用反斜杠转义单引号本身。单引号也被称为「强引用」。
-
--   反引号（`` ` ``）括起的字符串，被 shell 解释为命令，执行时用命令输出结果代替整个反引号对界限部分。
-
-    -   与反引号相同的语法是 `$(command)`，它的好处是界限更明确，且可以嵌套。因此编写新脚本时，更建议使用此语法。
+- 反引号（`` ` ``）括起的字符串，被 shell 解释为命令，执行时用命令输出结果代替整个反引号对界限部分。
+    - 与反引号相同的语法是 `$(command)`，它的好处是界限更明确，且可以嵌套。因此编写新脚本时，更建议使用此语法。
 
 !!! example "特殊字符示例"
 
-    ```shell
+    ```console
     $ ls /mnt/c/Program Files/
     ls: cannot access /mnt/c/Program: No such file or directory
     ls: cannot access Files/: No such file or directory
@@ -626,7 +672,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 ??? example "`(( 表达式 ))` 的返回值"
 
-    ```shell
+    ```console
     $ (( 1 + 1 ))
     $ echo $?  # 结果为 2，所以返回值为 0
     0
@@ -639,7 +685,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 ??? example "`expr` 和 `let` 使用示例"
 
-    ```shell
+    ```console
     $ expr length "ustclug"
     7
     $ let a=0
@@ -786,26 +832,26 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
     clear
 
-    for (( i=1; i<=MAX_NO; i++ ))
+    for i in `seq $MAX_NO`
     do
-      for (( s=MAX_NO; s>=i; s-- ))
+      for s in `seq $MAX_NO -1 $i`
       do
         echo -n " "
       done
-      for (( j=1; j<=i;  j++ ))
+      for j in `seq $i`
       do
         echo -n " ."
       done
       echo ""
     done
 
-    for (( i=MAX_NO; i>=1; i-- ))
+    for i in `seq $MAX_NO -1 1`
     do
-      for (( s=i; s<=MAX_NO; s++ ))
+      for s in `seq $i $MAX_NO`
       do
         echo -n " "
       done
-      for (( j=1; j<=i;  j++ ))
+      for j in `seq $i`
       do
         echo -n " ."
       done
@@ -836,6 +882,33 @@ $ # 所以为了正常显示，需要在结尾补上 \n
            . . .
             . .
              .
+    ```
+
+!!! tip "seq 命令"
+
+    seq 命令用于生成数列，命令格式如下：
+
+    ```shell
+    seq [OPTION]... LAST
+    seq [OPTION]... FIRST LAST
+    seq [OPTION]... FIRST INCREMENT LAST
+    ```
+
+    首项 `FIRST` 和公差 `INCREMENT` 默认值为 1。
+
+    例如，执行指令 `seq 10`，将得到如下数列：
+
+    ```
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
     ```
 
 除此之外，用于流程控制的还有在 C 语言中同样常见的 `break` 和 `continue`。与 C 语言不同的是，它们还接受一个数字作为参数，即 `break n` 和 `continue n`，其中参数 `n` 均表示跳出或跳过 n 层循环。
@@ -886,11 +959,11 @@ function name {
 
 Bash shell 本身提供了调试方法：
 
--   命令行中：`$ bash -x script.sh`。
+- 命令行中：`$ bash -x script.sh`。
 
--   脚本开头：`#!/bin/bash -x`。
+- 脚本开头：`#!/bin/bash -x`。
 
--   在脚本中用 set 命令调整（`set -x` 启用，`set +x` 禁用）。
+- 在脚本中用 set 命令调整（`set -x` 启用，`set +x` 禁用）。
 
 其中参数选项可以更改，`-n`：读一遍脚本中的命令但不执行，用于检查语法错误；`-v`：一边执行脚本、一边将执行过的脚本命令打印到标准输出；`-x`：提供跟踪执行信息，将执行的每一条命令和结果依次打印出来。注意避免几种调试选项混用。
 
@@ -952,8 +1025,8 @@ Bash shell 本身提供了调试方法：
 
 ## 引用来源 {#references .no-underline}
 
--   [catonmat](https://catonmat.net/cookbooks)
--   [vbird](http://cn.linux.vbird.org)
--   [runoob](https://www.runoob.com/linux/linux-shell.html)
--   [linuxde](https://man.linuxde.net)
--   [Bash Quoting](https://www.gnu.org/software/bash/manual/html_node/Quoting.html)
+- [catonmat](https://catonmat.net/cookbooks)
+- [vbird](http://cn.linux.vbird.org)
+- [runoob](https://www.runoob.com/linux/linux-shell.html)
+- [linuxde](https://man.linuxde.net)
+- [Bash Quoting](https://www.gnu.org/software/bash/manual/html_node/Quoting.html)

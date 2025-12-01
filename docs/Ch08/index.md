@@ -16,12 +16,12 @@ icon: simple/docker
 
 Docker 能够利用 Linux 内核的容器特性，隔离出一个轻便的环境来运行程序。这有什么意义呢？试想以下这些情况：
 
--   你运行的 Linux 发行版很老，而你需要运行一个更新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序。
--   你和朋友在设计一个大型的程序，而因为你们配置的环境不同，有时候在某个人的机器上正常运行的程序，在另一台机器上没法正常运行。
--   你希望在多台服务器上部署一个项目，但是项目需要非常复杂的配置，一个一个配置服务器的成本非常大。
--   …………
+- 你运行的 Linux 发行版很老，而你需要运行一个更新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序。基于 Docker 的实现方式，与虚拟机（VM）不同，它们都共用同一个 Linux 内核（虚拟机是完全的虚拟化，包括内核和用户空间）。
+- 你和朋友在设计一个大型的程序，而因为你们配置的环境不同，有时候在某个人的机器上正常运行的程序，在另一台机器上没法正常运行。
+- 你希望在多台服务器上部署一个项目，但是项目需要非常复杂的配置，一个一个配置服务器的成本非常大。
+- …………
 
-Docker 就可以帮助解决这些问题。它可以快速配置不同的环境（比如说，通过 Docker，你可以在 Ubuntu 上使用 CentOS 的环境），部署应用。
+Docker 就可以帮助解决这些问题。它可以快速配置不同的环境（比如说，通过 Docker，你可以在 Ubuntu 发行版上使用 CentOS 发行版的环境），部署应用。
 
 ## 安装 Docker {#install-docker}
 
@@ -66,47 +66,17 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 在安装完成后，可以使用
 
-```shell
+```console
 $ sudo adduser 用户名 docker
 ```
 
-将需要使用 Docker 的用户[加入](../Ch05/index.md#adduser) `docker` 用户组。**注意：`docker` 用户组中的用户拥有与 root 等效的权限。**
+将需要使用 Docker 的用户[加入](../Ch05/index.md#adduser) `docker` 用户组，以便使用命令行方式操作 Docker。**注意：`docker` 用户组中的用户拥有与 root 等效的权限。**
 
 ### 配置 Registry Mirror（可选，推荐） {#setup-registry-mirror}
 
-!!! warning "本节内容可能随时过时"
+!!! tip "本节操作请参考其他文档"
 
-    维护公共使用的 Docker Hub pull-through cache (registry mirror) 需要**非常高的运维成本**，因而有很多服务在之前可以使用，但是之后被迫关闭或转为非公开。你可以参考 <https://yeasy.gitbook.io/docker_practice/install/mirror#bu-zai-ti-gong-fu-wu-de-jing-xiang> 获取目前可能可以使用的 registry mirror（镜像加速器）。
-
-Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因，拖取的过程可能会比较慢。一些服务在中国提供了 Docker Hub 的镜像（反代缓存）。以下内容以网易云与百度云为例。
-
-为了使用这些 Docker Hub 镜像，在 Debian/Ubuntu 上，可以编辑 `/etc/docker/daemon.json` 文件（如果文件不存在，请新建一个），写入以下内容。
-
-```json
-{
-  "registry-mirrors": [
-    "https://hub-mirror.c.163.com",
-    "https://mirror.baidubce.com"
-  ]
-}
-
-```
-
-使用 `sudo systemctl restart docker` 命令重启 Docker 服务后，再次运行 `docker info` 命令，可以看到如下输出：
-
-```text
- Registry Mirrors:
-  https://hub-mirror.c.163.com/
-  https://mirror.baidubce.com/
-```
-
-如果你看到了上面的输出，说明你的 Docker Registry Mirror 已经配置好了。
-
-!!! info "如果你是科大校园网用户"
-
-    科大镜像站的 Docker Hub registry mirror 目前仅对校园网开放，地址为 `https://docker.mirrors.ustc.edu.cn/`。如果在使用以上获取的 registry mirror 时遇到问题，可以切换。需要注意由于 2020 年 11 月之后 Docker Hub 的访问速率限制，使用时可能会出现间歇性的问题。
-
-    详细信息见科大镜像站 [Docker Hub 源使用帮助](https://mirrors.ustc.edu.cn/help/dockerhub.html)。
+    你可以参考 <https://yeasy.gitbook.io/docker_practice/install/mirror> 获取目前可能可以使用的 registry mirror。
 
 ### 使用 Hello World 测试 Docker 安装 {#verify-docker-setup}
 
@@ -145,13 +115,13 @@ For more examples and ideas, visit:
 
 ### 在 Ubuntu 容器中使用 shell {#use-ubuntu-bash}
 
--   `docker run -it --rm --name ubuntu-container ubuntu:20.04`
+- `docker run -it --rm --name ubuntu-container ubuntu:latest`
 
 这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除；`--name` 参数代表给容器命名，如果没有加这个参数，那么 docker 会给容器随机起一个格式类似于 gracious_brahmagupta 的名字。
 
 `-it` 是为了获得可交互的 Shell 所必须的。`-i` 会将容器的 init（主进程，这里是 `/bin/bash`）的标准输入与 `docker` 这个程序的标准输入相连接；而 `-t` 会告知主进程输入为终端（TTY）设备。
 
-在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。
+在执行以上命令之后，你会获得一个 Ubuntu（版本为 `latest` 即最新的 LTS；如果需要指定版本，可以使用类似 `20.04` 的版本号替换 `latest`，推荐在生产环境中这么做，因为 `latest` 指定的最新版本可能随时间变化）的容器环境，退出 Shell 之后容器就会被销毁。
 
 如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 查看系统中所有的容器。
 
@@ -202,24 +172,45 @@ $ sudo docker rm ubuntu-container
 
 ### 在 Python 容器中使用 Python 命令行 {#use-python-repl}
 
--   `docker run -it --name python3 python`
+- `docker run -it --name python3 python`
 
 与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 `--name` 将创建的容器命名为 `python3`。
 
 ### 在 MkDocs 容器中构建本书 {#use-mkdocs-material-build}
 
--   从 GitHub 上获取本书源码：`git clone https://github.com/ustclug/Linux101-docs.git`
--   `docker run --rm -v ${PWD}/Linux101-docs:/docs -p 8000:8000 squidfunk/mkdocs-material`
+- 从 GitHub 上获取本书源码：`git clone https://github.com/ustclug/Linux101-docs.git`
+- `docker run --rm -v ${PWD}/Linux101-docs:/docs -p 8000:8000 squidfunk/mkdocs-material`
 
 在执行完成之后，可以使用浏览器访问本地的 8000 端口，以查看构建结果。
 
 这里多出了两个参数：
 
--   `-v`: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 `/docs`）。注意这个参数只接受绝对路径，所以这里读取了 `PWD` 这个变量，通过拼接的方式拼出绝对路径。
--   `-p 8000:8000`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则容器外部访问不了 8000 端口。
--   另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 `-it` 参数。
+- `-v`: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 `/docs`）。注意这个参数只接受绝对路径，所以这里读取了 `PWD` 这个变量，通过拼接的方式拼出绝对路径。
+- `-p 8000:8000`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则容器外部访问不了 8000 端口。
+- 另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 `-it` 参数。
 
 ## 构建自己的 Docker 镜像 {#build-docker-image}
+
+### Docker 的关键概念
+
+在继续之前，我们来梳理一下 Docker 中的几个关键概念：**容器（container）**、**镜像（image）**、**镜像仓库（registry）**。
+
+- **镜像仓库**是存储镜像的地方
+- **镜像**是 Docker 容器内文件系统的一份快照
+- **Dockerfile** 包含生成镜像的指令序列，可以理解为构建镜像的脚本
+- **容器**是一个（隔离）的运行环境
+
+它们之间的关系可以用下图表示，其中括号中的命令是查看相应对象列表的命令。
+
+```mermaid
+flowchart TD
+    Registry -->|pull| Image["Image (images)"]
+    Image -->|run| Container["Container (ps)"]
+    Container -->|commit| Image
+    Image -->|push| Registry["Registry (search)"]
+
+    Dockerfile -->|build| Image
+```
 
 ### 手工构建镜像 {#build-manually}
 
@@ -276,7 +267,7 @@ CMD ["fish"]
 sudo docker build -t riscv-cross:example .
 ```
 
-`-t riscv-cross:example` 代表为这个镜像打上 `riscv-cross:example` 的标签。构建完成后，使用 `docker run` 执行即可：
+`-t riscv-cross:example` 代表为这个镜像打上 `riscv-cross:example` 的标签，`.` 表示从当前目录下寻找 Dockerfile 并以当前目录作为构建过程的“工作路径”。构建完成后，使用 `docker run` 执行即可：
 
 ```console
 $ sudo docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
@@ -333,7 +324,7 @@ Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每�
     RUN yum clean all
     ```
 
-    当然，这不等于说必须要把所有命令都写在一条 `RUN` 里面。对于执行时间很长的命令，可以考虑放在 Dockerfile 的开头，并且使用单独的 `RUN` 运行，因为 Docker 在构建镜像时，可以重复使用之前构建好的层。这么做可以节约构建与调试 Dockerfile 的时间。
+    当然，这不等于说必须要把所有命令都写在一条 `RUN` 里面。对于执行时间很长的命令，可以考虑放在 Dockerfile 的开头，并且使用单独的 `RUN` 运行，因为 Docker 在构建镜像时，**可以重复使用之前构建好的层**。这么做可以节约构建与调试 Dockerfile 的时间。
 
 #### 在生产环境中运行使用 Flask 编写的简单网站 {#flask-production-example}
 
@@ -342,7 +333,7 @@ Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flas
 ```dockerfile
 FROM tiangolo/uwsgi-nginx-flask:python3.8
 
-RUN pip3 config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
+RUN pip3 config set global.index-url https://mirrors.ustc.edu.cn/pypi/simple
 RUN pip3 install pyopenssl
 
 COPY ./app /app
@@ -354,7 +345,7 @@ COPY ./app /app
 
 Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 `docker.io` 软件包，那么系统中可能未安装 `docker-compose`，使用以下命令安装：
 
-```shell
+```console
 $ sudo apt install docker-compose
 ```
 

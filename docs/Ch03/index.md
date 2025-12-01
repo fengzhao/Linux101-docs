@@ -43,7 +43,7 @@ icon: material/folder-open
 
 有了软件仓库，我们不需要手动下载大量的软件包再通过包管理器安装。只需要知道软件在软件仓库中的名称，即可让包管理器从网络中抓取到相应的软件包到本地，自动进行安装。
 
-但是与应用商店相比，使用包管理器安装需要预先知道所需软件在软件仓库中的对应包名，和应用商店相比无法进行模糊搜索（不过你也可以在包管理器官网上进行查找包名，再通过包管理器安装）。
+但是与应用商店相比，使用包管理器安装需要预先知道所需软件在软件仓库中的对应包名，和应用商店相比无法进行模糊搜索（不过你也可以在包管理器官网或者通过包管理器的命令行前端查找包名，再通过包管理器安装）。
 
 包管理系统有很多，比如管理 Debian (.deb) 软件包的 `dpkg` 以及它的前端 `apt`（用于 Debian 系的发行版）；`rpm` 包管理器以及它的前端 `dnf`（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 `yum`（用于 CentOS 7 和 RHEL 7 等）；`pacman` 包管理器（用于 Arch Linux 和 Manjaro）等等。
 
@@ -85,7 +85,7 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 
 #### 安装 {#installation}
 
-在确定了软件包的包名后，可以通过 `apt install <包名>` 进行安装。
+在确定了软件包的包名后，可以通过 `apt install <包名>` 安装软件包。如果需要一次性安装多个包，可以用 `apt install <包名1> <包名2> ...` 的写法。
 
 下面是 `apt install firefox` 安装火狐浏览器的输出结果示例。
 
@@ -148,6 +148,16 @@ Do you want to continue? [Y/n]
 
     具体有关权限的知识点将在[第五章](../Ch05/index.md)展开。
 
+!!! tip "跳过安装确认"
+
+    如果不希望 `apt` 询问是否安装，可以使用：
+
+    ```bash
+    apt install -y <软件包>
+    ```
+
+    这在编写无交互的**自动化脚本**时特别好用（例如那些能自动安装一系列依赖包的安装脚本）。但是，在这些脚本中，建议使用 `apt-get`，因为相对古老的 `apt-get` 的命令行参数比较稳定，而 `apt` 则有可能会变化，这对脚本的向后兼容性是不利的。
+
 #### 官方软件源镜像 {#software-sources}
 
 通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了丰富的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
@@ -207,11 +217,11 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     可以使用如下命令：
 
-    ```shell
+    ```console
     $ sudo sed -i 's|//.*archive.ubuntu.com|//mirrors.ustc.edu.cn|g' /etc/apt/sources.list
     ```
 
-    当然也可以直接使用 vim、nano 等文本编辑器进行修改。
+    当然也可以直接使用 `vim`、`nano` 等文本编辑器进行修改。
 
 #### 第三方软件源 {#third-party-software-sources}
 
@@ -227,8 +237,8 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     1. 安装需要的的软件包
 
-        ```shell
-        $ sudo apt-get update
+        ```console
+        $ sudo apt-get update # 更新本地的包列表
 
         $ sudo apt-get install \
             ca-certificates \
@@ -241,7 +251,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         这一步将 GPG Key 添加到系统目录中。GPG Key 用于验证软件源的完整性，如果下载的文件被篡改，GPG 签名验证会失败，从而系统不会继续进行安装操作，防止有问题的软件包进入系统。
 
-        ```shell
+        ```console
         $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         ```
 
@@ -249,7 +259,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         为了方便维护，第三方的 APT 软件源一般都放在 `/etc/apt/sources.list.d/` 目录下（而非直接编辑 `/etc/apt/sources.list`）。
 
-        ```shell
+        ```console
         $ echo \
         "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -261,13 +271,13 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         首先需要从第三方源更新软件列表。
 
-        ```shell
+        ```console
         $ sudo apt update
         ```
 
         之后便可以直接安装 `docker-ce` 以及相关的软件包。
 
-        ```shell
+        ```console
         $ sudo apt install docker-ce docker-ce-cli containerd.io
         ```
 
@@ -275,7 +285,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
 
-        ```shell
+        ```console
         $ sudo systemctl status docker
         ```
 
@@ -305,7 +315,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         这时候，我们可以通过 `systemctl` 命令启动 Docker 服务：
 
-        ```shell
+        ```console
         $ sudo systemctl start docker
         ```
 
@@ -387,7 +397,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     如果不小心执行了 `dpkg -i` 导致系统出现依赖问题，可以尝试通过如下的方式调用 `apt` 帮助修复依赖管理：
 
-    ```shell
+    ```console
     $ sudo apt -f install
     ```
 
@@ -411,7 +421,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
 
-    ```shell
+    ```console
     $ # 下载二进制的压缩文件存档
     $ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
@@ -426,14 +436,14 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     在进入解压得到的目录后，可以查看当前的目录下有什么内容：
 
-    ```shell
+    ```console
     $ ls
     bin  include  lib  libexec  share
     ```
 
-    一般而言，软件的可执行文件都位于 bin 目录下：
+    一般而言，软件的可执行文件都位于 `bin` 目录下：
 
-    ```shell
+    ```console
     $ cd bin
     $ ls
     (Output omitted)
@@ -444,14 +454,10 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     (Output omitted)
     ```
 
-    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。
+    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。我们可以这样做：
 
-    当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。
-
-    我们可以这样做：
-
-    ```shell
-    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
+    ```console
+    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下。
     $ sudo cp -R * /usr/local/
     ```
 
@@ -459,12 +465,16 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
-    ```shell
+    ```console
     $ echo $PATH
     /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
 
     在上面的复制过程中，源目录和目标目录的两个 `bin` 目录会相互合并，`clang` 和 `clang++` 两个可执行文件也就被复制到了 `/usr/local/bin/` 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。此外，在复制的时候 lib、doc 等文件夹也会和 `/usr/local`  下的对应目录合并，将 clang 的库和文档加到系统当中。
+
+!!! warning "有关手工获取的软件"
+
+    对于手工从 Internet 或者其他来源获取到的软件，在使用前务必注意检查其完整性（例如检查压缩文件的 hash 和官方网站上提供的是否一致）和安全性。运行有问题的程序，或者特别是安装有问题的程序（例如上面那样安装到 `/usr/local`），会导致系统安全受到损害。如非必要，请尽可能使用包管理器从官方软件源中安装软件。
 
 ### 更多用法 {#more-usage}
 
@@ -472,44 +482,101 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
 ### 使用源代码编译安装 {#compiling-installation}
 
-此部分内容请见拓展阅读：[编译安装](supplement.md)。
+此部分内容请见拓展阅读：[编译安装](supplement.md#compiling-installation)。
 
 ## 操作文件与目录 {#operate-files-and-dirs}
 
 在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，拖拽文件即可完成文件的移动，很容易管理文件与目录，Linux 的命令行操作虽然繁琐一些，但一旦上手，就可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
 
+### 查看文件夹内容 {#ls}
+
+[第二章](../Ch02/index.md)已经介绍过 `ls` 的基本用法，这里再补充一些常用的选项。
+
+```console
+$ # -l 参数会以列表的形式输出文件的详细信息
+$ ls -l [DIRECTORY]
+$ # -a 参数会显示所有文件，包括隐藏文件（以 . 开头的文件）
+$ ls -a [DIRECTORY]
+$ # -h 参数会以人类可读的方式显示文件大小，例如 1K、234M、2G 等
+$ ls -h [DIRECTORY]
+```
+
+!!! example "ls 示例"
+
+    ```console title="以列表的形式显示当前目录下的所有文件（包括隐藏文件）"
+    $ ls -la
+    ```
+
+    ```console title="以人类可读的方式显示当前目录下的所有文件（包括隐藏文件）的详细信息"
+    $ ls -lha
+    ```
+
+!!! tip "tree"
+
+    `tree` 命令可以以树状图的形式显示目录结构，使用前需要先安装：
+
+    ```console
+    $ sudo apt install tree
+    ```
+
+    使用方法：
+
+    ```console
+    $ tree [DIRECTORY]
+    ```
+
+!!! tip "eza"
+
+    [eza](https://github.com/eza-community/eza) 是一个 `ls` 的替代品，输出更加好看。在 Ubuntu 24.04 及以上版本中可以使用如下命令安装：
+
+    ```console
+    $ sudo apt install eza
+    ```
+
+    其使用方法和 `ls` 基本相同，例如显示详细信息则使用 `eza -l`。
+
 ### 查看文件内容 {#view}
 
 #### cat {#cat}
 
-```shell
+```console
 $ # 输出 FILE 文件的全部内容
 $ cat [OPTION] FILE
 ```
 
 !!! example "输出示例"
 
-    * 输出 file.txt 的全部内容
+    ```console title="输出 file.txt 的全部内容"
+    $ cat file.txt
+    ```
 
-        ```shell
-        $ cat file.txt
-        ```
-
-    * 查看 file1.txt 与 file2.txt 连接后的内容
-
-        ```shell
-        $ cat file1.txt file2.txt
-        ```
+    ```console title="查看 file1.txt 与 file2.txt 连接后的内容"
+    $ cat file1.txt file2.txt
+    ```
 
 !!! note "为什么名字叫 cat？"
 
     当然和猫咪没有关系，cat 这里是 con**cat**enate（连接）的缩写，因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。
 
+!!! tip "bat"
+
+    [bat](https://github.com/sharkdp/bat) 是一个 `cat` 的替代品，输出支持语法高亮和分页。可以使用如下命令安装：
+
+    ```console
+    $ sudo apt install bat
+    ```
+
+    在 Debian/Ubuntu 下，该命令需要使用 `batcat` 调用。例如，输出 sol1.c 文件的内容（支持 C 语言语法高亮）：
+
+    ```console
+    $ batcat sol1.c
+    ```
+
 #### less {#less}
 
 less 和 cat 的区别在于，cat 会一次性打印全部内容到终端中并退出，而 less 一次只显示一页，且支持向前/后滚动、搜索等功能。如果要在一个大文件中（例如 man page）查找一部分内容，less 通常要比 cat 方便得多。
 
-```shell
+```console
 $ # 在可交互的窗口内输出 FILE 文件的内容
 $ less FILE
 ```
@@ -535,9 +602,9 @@ $ less FILE
 
 ### 编辑文件内容 {#nano}
 
-Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。
+Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。如果 Nano 没有被默认安装，则可以通过 `apt` 来安装。
 
-```shell
+```console
 $ nano file.txt  # 使用 nano 编辑 file.txt 文件（如果没有则创建）
 ```
 
@@ -547,7 +614,7 @@ Nano 启动后，用户可以直接开始输入需要的内容，使用方向键
 
 ### 复制文件和目录 {#cp}
 
-```shell
+```console
 $ # 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
 $ cp [OPTION] SOURCE DEST
 
@@ -567,24 +634,21 @@ $ cp [OPTION] SOURCE... DIRECTORY
 
 !!! example "复制示例"
 
-    * 将 `file1.txt` 复制一份到同目录，命名为 `file2.txt`
-    ```shell
+    ```console title="将 file1.txt 复制一份到同目录，命名为 file2.txt"
     $ cp file1.txt file2.txt
     ```
 
-    * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 目录中
-    ```shell
+    ```console title="将 file1.txt、file2.txt 文件复制到同目录下的 file 目录中"
     $ cp file1.txt file2.txt ./file/
     ```
 
-    * 将 `dir1` 文件夹及其所有子文件复制到同目录下的 `test` 文件夹中
-    ```shell
+    ```console title="将 dir1 文件夹及其所有子文件复制到同目录下的 test 文件夹中"
     $ cp -r dir1 ./test/
     ```
 
 ??? tip "硬链接和软链接"
 
-    cp 的 `-l` 和 `-s` 参数分布为创建硬链接和软链接（又称为“符号链接”）。
+    cp 的 `-l` 和 `-s` 参数分别为创建硬链接和软链接（又称为“符号链接”）。
 
     简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的实现。
 
@@ -605,7 +669,7 @@ $ cp [OPTION] SOURCE... DIRECTORY
 
     `ln` 命令也可以用来创建硬链接和软链接。
 
-    ```shell
+    ```console
     $ ln -s file symlink  # 创建指向文件 file 的软链接 symlink
     $ ln file hardlink  # 创建指向文件 file 的硬链接 hardlink
     ```
@@ -614,7 +678,7 @@ $ cp [OPTION] SOURCE... DIRECTORY
 
 `mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切。
 
-```shell
+```console
 $ # 将 SOURCE 文件移动到 DEST 文件
 $ mv [OPTION] SOURCE DEST
 
@@ -629,9 +693,13 @@ $ mv [OPTION] SOURCE... DIRECTORY
 | `-f`, `--force`  | 覆盖目标地址同名文件             |
 | `-u`, `--update` | 仅当源文件比目标文件新才进行移动 |
 
+!!! tip "重命名"
+
+    `mv` 命令可以作为对文件或目录重命名的方式。例如，`mv oldname newname` 可以将 `oldname` 的文件或目录重命名为 `newname`。
+
 ### 删除文件和目录 {#rm}
 
-```shell
+```console
 $ # 删除 FILE 文件，FILE 可以为多个文件。
 $ # 如果需要删除目录，需要通过 -r 选项递归删除目录
 $ rm [OPTION] FILE...
@@ -639,35 +707,38 @@ $ rm [OPTION] FILE...
 
 常用的选项：
 
-| 选项                      | 含义                               |
-| ------------------------- | ---------------------------------- |
-| `-f`, `--force`           | 无视不存在或者没有权限的文件和参数 |
-| `-r`, `-R`, `--recursive` | 递归删除目录及其子文件             |
-| `-d`, `--dir`             | 删除空目录                         |
+| 选项                      | 含义                                                                 |
+| ------------------------- | -------------------------------------------------------------------- |
+| `-f`, `--force`           | 无视不存在或者有写保护的文件，只要对包含它的文件夹本身有权限即可删除 |
+| `-r`, `-R`, `--recursive` | 递归删除目录及其子文件                                               |
+| `-d`, `--dir`             | 删除空目录                                                           |
 
 !!! example "删除示例"
 
-    * 删除 `file1.txt` 文件：
+    ```console title="删除 file1.txt 文件"
+    $ rm file1.txt
+    ```
 
-        ```
-        $ rm file1.txt
-        ```
+    ```console title="删除 test 目录及其下的所有文件"
+    $ rm -r test/
+    ```
 
-    * 删除 `test` 目录及其下的所有文件：
+    ```console title="尝试强制删除 test1/、test2/、file1.txt 文件和目录。这些文件或者目录可能不存在、有写保护或者没有权限读写"
+    $ rm -rf test1/ test2/ file1.txt
+    ```
 
-        ```
-        $ rm -r test/
-        ```
+!!! warning "注意目录拼写"
 
-    * 删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
+    使用 `rm` 删除时，请务必注意目录拼写。例如：
 
-        ```
-        $ rm -rf test1/ test2/ file1.txt
-        ```
+    ```console
+    $ rm -rf /home/ustc/folder # 删除 folder
+    $ rm -rf / home/ustc/folder # 删除根目录下的所有文件和 home/ustc/folder 及其中的文件：这很危险！
+    ```
 
 ### 创建目录 {#mkdir}
 
-```shell
+```console
 $ # 创建一个目录，名为 DIR_NAME
 $ mkdir [OPTION] DIR_NAME...
 ```
@@ -680,30 +751,24 @@ $ mkdir [OPTION] DIR_NAME...
 
 !!! example "创建目录示例"
 
-    * 创建两个目录，名字分别为 `test1`、`test2`：
+    ```console title="创建两个目录，名字分别为 test1、test2"
+    $ mkdir test1 test2
+    ```
 
-        ```shell
-        $ mkdir test1 test2
-        ```
-
-    * 创建路径 `test1/test2/test3/`：
-
-        ```shell
-        $ mkdir -p test1/test2/test3/
-        ```
+    ```console title="创建路径 test1/test2/test3/"
+    $ mkdir -p test1/test2/test3/
+    ```
 
 ### 创建文件 {#touch}
 
-```shell
+```console
 $ # 创建一个文件，名为 FILE_NAME
 $ touch FILE_NAME...
 ```
 
 !!! example "创建文件示例"
 
-    创建两个文件，名字分别为 `file1`、`file2`：
-
-    ```
+    ```console title="创建两个文件，名字分别为 file1、file2"
     $ touch file1 file2
     ```
 
@@ -713,7 +778,7 @@ $ touch FILE_NAME...
 
     `stat` 命令可以显示文件的属性信息，可以来看看 touch 对已有文件的操作：
 
-    ```shell
+    ```console
     $ touch test  # 创建文件 test
     $ stat test  # 查看信息
     File: test
@@ -740,7 +805,7 @@ $ touch FILE_NAME...
 
 ### 搜索文件和目录 {#find}
 
-```shell
+```console
 $ # 在 PATH（路径）中根据 EXPRESSION（表达式）搜索文件
 $ find [OPTION] PATH [EXPRESSION]
 ```
@@ -754,25 +819,131 @@ $ find [OPTION] PATH [EXPRESSION]
 | `-size +1M`     | 大于 1M 的文件，`+` 代表大于这个大小，对应地，`-` 代表小于之后的大小 |
 | `-or`           | 或运算符，代表它前后两个条件满足一个即可                             |
 
+如果不添加任何其他选项，find 会递归地输出提供的 PATH 下的所有文件。
+
 !!! example "搜索示例"
 
-    * 在当前目录搜索名为 report.pdf 的文件：
+    ```console title="在当前目录搜索名为 report.pdf 的文件"
+    $ find . -name 'report.pdf'
+    ```
 
-        ```shell
-        $ find . -name 'report.pdf'
-        ```
+    ```console title="全盘搜索大于 1G 的文件"
+    $ find / -size +1G
+    ```
 
-    * 全盘搜索大于 1G 的文件：
+    ```console title="在用户目录搜索所有名为 node_modules 的文件夹"
+    $ find ~/ -name 'node_modules' -type d
+    ```
 
-        ```shell
-        $ find / -size +1G
-        ```
+!!! tip "对搜索到的文件批量执行命令"
 
-    * 在用户目录搜索所有名为 node_modules 的文件夹：
+    find 的一个很有用的用法是对每一个文件都执行某个命令（例如 `md5sum`）：
 
-        ```shell
-        $ find ~/ -name 'node_modules' -type d
-        ```
+    ```shell
+    find . -type f -exec md5sum {} \;
+    ```
+
+    这里，`find .` 是指对当前目录（`.`）进行 `find`，并只列出文件（`-type f`）。`-exec` 后面的内容是要执行的命令，其中 `{}` 会被替换成找到的对象（文件、目录）的路径，`\;` 表示对每个对象都执行一次给定的命令，即实际运行的是：
+
+    ```shell
+    md5sum file1
+    md5sum file2
+    md5sum file3
+    ...
+    ```
+
+    如果将 `\;` 换成 `+`，那么就是将文件名称收集起来一并交给要执行的命令，即：
+
+    ```shell
+    md5sum file1 file2 file3 ...
+    ```
+
+!!! tip "fd"
+
+    [fd](https://github.com/sharkdp/fd) 是 find 的更现代、好用的替代。在 Ubuntu 下需要安装 `fd-find` 包，并且命令名为 **`fdfind`**（而非 `fd`）。
+
+    其默认接受正则表达式（见[第九章](../Ch09/index.md)）作为搜索条件，例如搜索结尾为 `.conf` 的文件：
+
+    ```console
+    $ fdfind '\.conf$' /etc/
+    /etc/debconf.conf
+    /etc/gai.conf
+    /etc/host.conf
+    （以下省略）
+    ```
+
+### 统计文件或文件夹大小 {#du}
+
+`du` 命令可以统计文件和目录的大小，因为目录的大小是无法直接获取的，需要统计里面所有的文件和子目录的大小之后加和才能得到。
+
+```console
+$ du [OPTION] [FILE or DIRECTORY]
+```
+
+常用的选项：
+
+| 选项                     | 含义                               |
+| ------------------------ | ---------------------------------- |
+| `-h`, `--human-readable` | 以人类可读的方式显示大小           |
+| `-s`, `--summarize`      | 仅显示总大小                       |
+| `-a`, `--all`            | 显示所有文件和目录的大小           |
+| `--max-depth N`, `-d N`  | 仅显示到指定的目录深度（N 为数字） |
+
+`du` 需要先递归进入子目录，处理完其中所有的项目之后，才能回到上层目录并显示上层目录的总大小。
+
+!!! example "du 示例"
+
+    ```console title="显示当前目录下所有文件和目录的大小"
+    $ du -h
+    3.8M	./share/iana-etc
+    4.0K	./share/licenses/iana-etc
+    4.0K	./share/licenses/tzdata
+    4.0K	./share/licenses/gcc-libs
+    4.0K	./share/licenses/ncurses
+    4.0K	./share/licenses/zlib
+    4.0K	./share/licenses/sqlite
+    20K	./share/licenses/util-linux-libs
+    4.0K	./share/licenses/e2fsprogs
+    12K	./share/licenses/openssl
+    （中间内容省略）
+    9.5G	.
+    ```
+
+    ```console title="显示当前目录下所有文件和目录的大小，并且仅显示一层目录"
+    $ du -h -d 1
+    3.0G	./share
+    1.1G	./bin
+    337M	./include
+    4.7G	./lib
+    4.0K	./local
+    5.0M	./src
+    473M	./lib32
+    340K	./libexec
+    4.0K	./man
+    9.5G	.
+    ```
+
+    ```console title="显示当前目录下所有文件和目录的总大小"
+    $ du -sh
+    9.5G	.
+    ```
+
+此外，`ncdu` 命令可以以图形化和交互式的方式显示目录的内容和大小，并可以用左右方向键浏览目录，类似 Windows 的文件资源管理器。这非常便于观察哪个目录占用了较大的磁盘空间。按 `d` 可以删除当前选中的文件或目录，按 `q` 退出。
+
+```plain
+ncdu 1.18 ~ Use the arrow keys to navigate, press ? for help
+--- /home/example/path -------------------------------------
+   53.1 MiB [##########] /main
+   45.4 MiB [########  ]  Contents-riscv64.gz
+   40.6 MiB [#######   ] /universe
+  580.0 KiB [          ] /multiverse
+   44.0 KiB [          ] /restricted
+    8.0 KiB [          ]  InRelease
+    8.0 KiB [          ]  Release
+    4.0 KiB [          ]  Release.gpg
+
+ Total disk usage: 139.7 MiB  Apparent size: 139.6 MiB  Items: 29
+```
 
 ### 模式匹配 {#pattern}
 
@@ -810,7 +981,7 @@ $ find [OPTION] PATH [EXPRESSION]
 
 通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：
 
-```shell
+```console
 $ # 命令格式如下，请参考下面的使用样例了解使用方法
 $ tar [OPTIONS] FILE...
 ```
@@ -826,73 +997,74 @@ $ tar [OPTIONS] FILE...
 | `-x`, `--extract, --get` | 从存档文件中提取出文件                       |
 | `-f`, `--file=ARCHIVE`   | 使用指定的存档文件                           |
 | `-C`, `--directory=DIR`  | 指定输出的目录                               |
+| `-v`, `--verbose`        | 详细列出处理的文件                           |
 
 添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件：
 
-| 选项                                   | 含义                        |
-| -------------------------------------- | --------------------------- |
-| `-z`, `--gzip`, `--gunzip`, `--ungzip` | 使用 gzip 算法处理存档文件  |
-| `-j`, `--bzip2`                        | 使用 bzip2 算法处理存档文件 |
-| `-J`, `--xz`                           | 使用 xz 算法处理存档文件    |
-
-!!! example "tar 使用实例"
-
-    * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
-
-        ```shell
-        $ tar -c -f target.tar file1 file2 file3
-        ```
-
-    * 将 `target.tar` 中的文件提取到 `test` 目录中：
-
-        ```shell
-        $ tar -x -f target.tar -C test/
-        ```
-
-    * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
-
-        ```shell
-        $ tar -cz -f target.tar.gz file1 file2 file3
-        ```
-
-    * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
-
-        ```shell
-        $ tar -xz -f target.tar.gz -C test/
-        ```
-
-    * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
-
-        ```shell
-        $ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
-        ```
-
-    * 列出 `target.tar` 存档文件中的内容
-
-        ```shell
-        $ tar -t -f target.tar
-
-        $ # 打印出文件的详细信息
-        $ tar -tv -f target.tar
-        ```
+| 选项                                   | 含义                                 |
+| -------------------------------------- | ------------------------------------ |
+| `-z`, `--gzip`, `--gunzip`, `--ungzip` | 使用 gzip 算法处理存档文件           |
+| `-j`, `--bzip2`                        | 使用 bzip2 算法处理存档文件          |
+| `-J`, `--xz`                           | 使用 xz 算法处理存档文件             |
+| `--zstd`                               | 使用 zstd 算法处理存档文件           |
+| `-a`, `--auto-compress`                | 通过后缀自动选择压缩算法（**推荐**） |
 
 !!! tip "组合 tar 的选项"
 
     与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
 
-    ```shell
-    $ tar -c -z -v -f target.tar test/
-    $ tar -czvf target.tar test/
-    $ tar -f target.tar -czv test/
+    ```console
+    $ tar -c -z -v -f target.tar.gz test/
+    $ tar -czvf target.tar.gz test/
+    $ tar -f target.tar.gz -czv test/
+    ```
+
+!!! example "tar 使用实例"
+
+    ```console title="将 file1、file2、file3 打包为 target.tar"
+    $ tar -c -f target.tar file1 file2 file3
+    $ # 省略 - 符号也是可以的
+    $ tar cf target.tar file1 file2 file3
+    ```
+
+    ```console title="将 target.tar 中的文件提取到 test 目录中"
+    $ tar -x -f target.tar -C test/
+    $ # 或者：
+    $ tar xf target.tar -C test/
+    ```
+
+    ```console title="将 file1、file2、file3 打包，并使用 gzip 算法压缩，得到压缩文件 target.tar.gz"
+    $ tar -cz -f target.tar.gz file1 file2 file3
+    $ # 可以总是使用 -a 选项，避免记忆的麻烦
+    $ tar caf target.tar.gz file1 file2 file3
+    ```
+
+    ```console title="将压缩文件 target.tar.gz 解压到 test 目录中"
+    $ tar -xz -f target.tar.gz -C test/
+    $ # 或者这样：
+    $ tar xaf target.tar.gz -C test
+    ```
+
+    ```console title="将 archive1.tar、archive2.tar、archive3.tar 三个存档文件中的文件追加到 archive.tar 中"
+    $ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
+    ```
+
+    ```console title="列出 target.tar 存档文件中的内容"
+    $ tar -t -f target.tar
+    $ tar tf target.tar
+
+    $ # 打印出文件的详细信息
+    $ tar -tv -f target.tar
+    $ tar tvf target.tar
     ```
 
 !!! tip "存档文件的后缀名"
 
     后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法。
 
-    在第一个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
+    在 `tar -c -f target.tar file1 file2 file3` 这个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
 
-    在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 tar 文件的提取。
+    在 `tar -cz -f target.tar.gz file1 file2 file3` 这个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 tar 文件的提取。
 
     同样地，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
 
@@ -914,7 +1086,7 @@ $ tar [OPTIONS] FILE...
 
 大部分软件在安装时会将它的软件手册安装在系统的特定目录， `man` 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。
 
-```shell
+```console
 $ # 调出 tar 命令和 ls 命令的文档
 $ man tar
 $ man ls
@@ -955,6 +1127,10 @@ DESCRIPTION
 (Output omitted)
 ```
 
+!!! tip "提示"
+
+    对于单行的命令，可以使用 [Explain Shell](https://explainshell.com/) 解释命令和参数的含义、作用。Explain Shell 通过预先解析 Ubuntu 的 man 文档实现了相关功能。
+
 ### tldr 软件 {#tldr}
 
 通常，软件手册中的内容十分繁多，如果只是希望能够快速了解软件的常用用法，可以使用 `tldr` 软件。
@@ -965,11 +1141,17 @@ DESCRIPTION
 
 在 Debian 系下，可以直接通过 `apt` 进行安装：
 
-```shell
+```console
 $ sudo apt install tldr
 $ # 更新 tldr pages
 $ tldr --update
 ```
+
+!!! tip "Debian 13 中关于 tldr 包更新的说明"
+
+    需要指出的是，在 Debian 13 (Trixie) 发行版中，原有的 `tldr` 包（使用 Haskell 实现）已经被移除。[^3]取而代之的是 `tldr-py` 包（使用 Python 实现）和 `tealdeer` 包（使用 Rust 实现），它们仍然提供 `tldr` 命令，因此使用方式不变。
+
+    考虑到 Linux 101 是基于 Ubuntu LTS 的，我们目前在正文中保留原有的安装命令。读者可以使用 `apt search tldr` 来查询自己版本所支持的相关包，具体用法参见前文。
 
 #### 使用 {#use-tldr}
 
@@ -1009,13 +1191,13 @@ https://www.gnu.org/software/tar
 
 可以从输出中快速地了解到：
 
--   创建存档文件；
--   创建压缩的存档文件；
--   解压一个存档文件；
--   解压一个存档文件到指定目录；
--   创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
--   给出一个存档文件中的文件列表；
--   解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
+- 创建存档文件；
+- 创建压缩的存档文件；
+- 解压一个存档文件；
+- 解压一个存档文件到指定目录；
+- 创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
+- 给出一个存档文件中的文件列表；
+- 解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
 
 ## 思考题 {#questions}
 
@@ -1057,7 +1239,7 @@ https://www.gnu.org/software/tar
 
     在 2020 年初撰写本章时，“第三方软件源”中安装 Docker 的示例中使用了 `apt-key` 添加信任的 GPG Key，如下所示：
 
-    ```shell
+    ```console
     $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     ```
 
@@ -1070,4 +1252,7 @@ https://www.gnu.org/software/tar
 ## 引用来源 {#references .no-underline}
 
 [^1]: [软件仓库](http://people.ubuntu.com/~happyaron/udc-cn/lucid-html/ch06s09.html)
+
 [^2]: [Ubuntu 源使用帮助](https://mirrors.ustc.edu.cn/help/ubuntu.html)
+
+[^3]: [Debian 13 发布说明：已废弃软件包](https://www.debian.org/releases/trixie/release-notes/issues.zh_CN.html#noteworthy-obsolete-packages)

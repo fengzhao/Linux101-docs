@@ -1,10 +1,14 @@
+---
+icon: material/tooltip-question
+---
+
 # 思考题解答 {#solution}
 
 ## I/O 重定向的小细节
 
 ??? info "解答"
 
-    ```shell
+    ```console
     $ wc -l file
     427 file
     $ wc -l < file

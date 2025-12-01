@@ -8,7 +8,7 @@ icon: simple/linux
 
 !!! abstract "导言"
 
-    21 世纪是计算机科学的世纪。在信息化程度日增月益的现代社会，与计算机和各类电子产品打交道已经成为我们，尤其是年轻人的日常生活中几乎不可避免的事情了。据统计，截至 2021 年 6 月，中国的网民规模已经高达 10.11 亿[^1]，即比例已经超过七成，而其中以中青年为主。在你的生活中，你认为计算机又占据了多大的席位呢？事实上，计算机在你生活中的比重可能远超出你的想象：不仅包括我们熟悉的在日常生活中频繁使用的个人计算机（俗称“电脑”），诸如智能手机操作系统、车载定位导航系统、校内一卡通服务系统以及如今风靡中国的电子支付网络等等都十分倚重各式各样的计算机。这些隐藏在各类用途迥异的设备中、甚至是无形的网络后面的计算机又会是什么模样？
+    21 世纪是计算机科学的世纪。在信息化程度日增月益的现代社会，与计算机和各类电子产品打交道已经成为我们，尤其是年轻人的日常生活中几乎不可避免的事情了。据统计，截至 2025 年 6 月，中国的网民规模达 11.23 亿人[^1]，即比例已经超过七成，而其中以中青年为主。在你的生活中，你认为计算机又占据了多大的席位呢？事实上，计算机在你生活中的比重可能远超出你的想象：不仅包括我们熟悉的在日常生活中频繁使用的个人计算机（俗称“电脑”），诸如智能手机操作系统、车载定位导航系统、校内一卡通服务系统以及如今风靡中国的电子支付网络等等都十分倚重各式各样的计算机。这些隐藏在各类用途迥异的设备中、甚至是无形的网络后面的计算机又会是什么模样？
 
     在本书的第一章，我们将带领你简单了解现代计算机和计算机系统的发展，并正式引入本书的核心介绍对象，即在个人计算机系统中虽然不甚流行，你可能也少有耳闻，但在科学研究、工业生产、计算机网络等各种专业场合中占据绝对主导的 Linux 操作系统。本章还会进一步引领你一步步了解我们身边的 Linux 系统，认识到其实它并不遥远缥缈也绝非高不可攀。最后，我们还会把它带到你的眼前，让你亲自上手感受它的魅力。
 
@@ -16,17 +16,17 @@ icon: simple/linux
 
 ### 计算机的更新换代 {#computer-generations}
 
-自 1946 年第一台通用计算机埃尼阿克（全称“电子数值积分计算机”，英文简称 ENIAC）问世以来，人类文明就朝向信息化大步迈进。在接下来的几十年，计算机经历了真空管时代（第一代，ENIAC 就是真空管计算机）、晶体管时代（第二代，如贝尔实验室的世界上第一台全晶体管计算机 TRADIC）、集成电路时代（第三代，如 IBM System / 360 系列）和如今的大规模集成电路时代（第四代，如世界上第一款微处理器 Intel 4004）。在更新换代中，计算机的性能和集成度都有着飞跃般的提升，在过去几十年的表现呈指数级增长，因而就有了计算机行业内耳熟能详的“摩尔定律”，即**集成电路上可容纳的晶体管数目每两年就会翻一倍**，这条定律描述了近几十年来计算机性能爆发增长的现象。
+自 1946 年第一台通用计算机埃尼阿克（全称“电子数值积分计算机”，英文简称 ENIAC）问世以来，人类文明就朝向信息化大步迈进。在接下来的几十年，计算机经历了真空管时代（第一代，ENIAC 就是真空管计算机）、晶体管时代（第二代，如贝尔实验室的世界上第一台全晶体管计算机 TRADIC）、集成电路时代（第三代，如 IBM System/360 系列）和如今的大规模集成电路时代（第四代，如世界上第一款微处理器 Intel 4004）。在更新换代中，计算机的性能和集成度都有着飞跃般的提升，在过去几十年的表现呈指数级增长，因而就有了计算机行业内耳熟能详的“摩尔定律”（Moore's Law），即**集成电路上可容纳的晶体管数目每两年就会翻一倍**，这条定律描述了近几十年来计算机性能爆发增长的现象。
 
 ??? tip "摩尔定律"
 
-    对于摩尔定或许你会更熟悉这种说法：**计算机的性能每 18 个月提高一倍**，但事实上这句话来自英特尔首席执行官大卫·豪斯而不是摩尔。不过有一点可以肯定的是，这两句话都预测计算机的性能将随着时间产生指数爆炸级别的增长，而这在过去几十年间确实实现了。
+    对于摩尔定律或许你会更熟悉这种说法：**计算机的性能每 18 个月提高一倍**，但事实上这句话来自英特尔首席执行官大卫·豪斯（David House）而不是摩尔。不过有一点可以肯定的是，这两句话都预测计算机的性能将随着时间产生指数爆炸级别的增长，而这在过去几十年间确实实现了。
 
     不过，由于晶体管的密度会受到量子物理理论上的限制，以及 CPU 会受到功耗和散热的限制，事实上这个定律已经开始失效了，计算机性能的提升开始放缓。为了不受制于这些限制，人们从最初追求单个 CPU 性能的提升逐渐转向了多个 CPU 之间的联合协作，因而基于多核的开发成为了未来计算机领域开发人员的一个不可绕过的话题。
 
 ### 计算机操作系统 {#computer-os}
 
-如果现在提起计算机操作系统，可能多数人的第一反应就是大名鼎鼎的 Windows，此外有些人可能也接触过 macOS 或者 Linux 的各类发行版（如：Ubuntu, Manjaro, CentOS 等），它们都是计算机操作系统。然而计算机最初并没有操作系统。在当时，许多计算机不是通用计算机，它们造出来就是为了某个特定目的而服务的，因此其架构只需要为这个目的而设计即可，无需包括完整的操作系统。另外一个原因是在晶体管时代之前，计算机体积庞大，而性能又十分有限，因此也没有能力承载通用的操作系统。随着计算机性能的提升，人们更加依赖计算机的能力，对计算机的功能要求也日渐复杂。为了能尽可能利用计算机的自动化这一特性，一些操作系统开始成型。在成型的初期，计算机操作系统的目的是为了帮助用户进行批处理操作，不过之后它们也慢慢有了新的功能：进程管理、任务调度、控制输入输出设备等。这样的操作系统逐渐形成了庞大的体系，成为了联络一般用户和计算机底层设备的中介，让用户无需关心绝大多数的底层设备，大大降低了用户的使用学习成本。
+如果现在提起计算机操作系统，可能多数人的第一反应就是大名鼎鼎的 Windows，此外有些人可能也接触过 macOS 或者 Linux 的各类发行版（如：Ubuntu, Fedora, Manjaro, CentOS 等），它们都是计算机操作系统。然而计算机最初并没有操作系统。在当时，许多计算机不是通用计算机，它们造出来就是为了某个特定目的而服务的，因此其架构只需要为这个目的而设计即可，无需包括完整的操作系统。另外一个原因是在晶体管时代之前，计算机体积庞大，而性能又十分有限，因此也没有能力承载通用的操作系统。随着计算机性能的提升，人们更加依赖计算机的能力，对计算机的功能要求也日渐复杂。为了能尽可能利用计算机的自动化这一特性，一些操作系统开始成型。在成型的初期，计算机操作系统的目的是为了帮助用户进行批处理操作，不过之后它们也慢慢有了新的功能：进程管理、任务调度、控制输入输出设备等。这样的操作系统逐渐形成了庞大的体系，成为了联络一般用户和计算机底层设备的中介，让用户无需关心绝大多数的底层设备，大大降低了用户的使用学习成本。
 
 ### 现代操作系统的功能 \* {#modern-os-functions}
 
@@ -58,9 +58,9 @@ icon: simple/linux
 
 1969 年，美国 AT&T 公司的贝尔实验室开发了 UNIX 操作系统，并在此后的 10 年里在学术机构和大型企业中得到了广泛的应用。在这段时间，许多计算机从业者开发了很多基于 UNIX 的变种，统称为“类 UNIX 操作系统”。最初 AT&T 公司将 UNIX 的源码以低价甚至免费的许可授权给学术机构做研究和教学之用，然而后来它开始意识到了其商业价值，改变了之前的策略，取消了授权并对代码进行闭源，并对之前在 UNIX 之上研究出来的各类衍生组件和变种系统全部声明了著作权，随后开始了一场旷日持久的诉讼。虽然 UNIX 在此前 10 年在学界和业界起着十分重要的作用，但 AT&T 公司的这种行为对诸多使用 UNIX 和其变种的学术机构和商业厂家造成了巨大的负面影响，许多曾经的用户对 AT&T 公司的行径十分不满。
 
-1983 年 9 月 27 日，理查德·斯托曼在麻省理工学院发起了 GNU 计划，它的目标是创建一套类似 UNIX 但完全自由的操作系统，因此这套系统不会包括任何 UNIX 的代码。在这个计划中诞生了之后十分有名的“GNU 通用公共许可证”（英文简称 GPL），这份许可证把使用该许可的软件的所有权利授予任何使用它的人。这种授权方式与通常的版权授权方式相左，它十分慷概地让出了几乎所有权利，让基于它的软件成为了自由且开源的软件，因此这种权利又被称为著作传（相对于通常的“著作权”）。
+1983 年 9 月 27 日，理查德·斯托曼（Richard Stallman）在麻省理工学院发起了 GNU 计划，它的目标是创建一套类似 UNIX 但完全自由的操作系统，因此这套系统不会包括任何 UNIX 的代码。在这个计划中诞生了之后十分有名的“GNU 通用公共许可证”（英文简称 GPL），这份许可证把使用该许可的软件的所有权利授予任何使用它的人。这种授权方式与通常的版权授权方式相左，它十分慷概地让出了几乎所有权利，让基于它的软件成为了自由且开源的软件，因此这种权利又被称为著作传（相对于通常的“著作权”）。
 
-1991 年，正在大学内进修的林纳斯·托瓦兹对他使用的一个类 UNIX 操作系统 MINIX 十分不满，因为当时 MINIX 仅可用于教育但不允许任何商业用途。于是他在他的大学时期编写并发布了自己的操作系统，也就是后来所谓的 “Linux 内核”，成为了如今各类 Linux 发行版的基础。
+1991 年，正在大学内进修的林纳斯·托瓦兹（Linus Torvalds）对他使用的一个类 UNIX 操作系统 MINIX 十分不满，因为当时 MINIX 仅可用于教育但不允许任何商业用途。于是他在他的大学时期编写并发布了自己的操作系统，也就是后来所谓的 “Linux 内核”，成为了如今各类 Linux 发行版的基础。
 
 Linux 内核并不是一个完整的操作系统，因为它过于精简，单单从它的功能上来说就已经不符合通常的现代的操作系统的定义了。为了能让这个内核拥有更多功能、完善的用户界面和更佳的使用体验，许多自由软件社区的开发人员和一些计算机商业公司便开始把各种组件添加到这个内核之上，这才构建成了一个完整的 Linux 操作系统。因为 Linux 内核是一个开源软件，所以通过这种方式组合出来的 Linux 操作系统会有许许多多的形式，不像 Windows 或者 macOS 这种受到公司统一规定的商业操作系统。正是因为开源社区的诸多成员以及许多商业公司的去中心化的贡献，让 Linux 充满了多样性。因为这种独特的属性，或许我们可以说 Linux 操作系统从来都不是指哪一种操作系统。取而代之地，为了指代某一个基于 Linux 内核构造出来的操作系统，我们通常都将其称之为“Linux 发行版”。
 
@@ -76,11 +76,10 @@ Linux 内核并不是一个完整的操作系统，因为它过于精简，单�
 
     进入 GNU/Linux 世界，便意味着与 GNU 自由软件打交道。先看看一堆字母 g 开头的应用程序：
 
-    - gcc: GNU 的 C 和 C++ 编译器
-    - gdb: GNU 程序调试器
-    - gzip: gz 格式压缩与解压缩工具
-    - GNOME: 隶属于 GNU 项目的桌面环境
-    - gimp: GNU 图像编辑工具
+    - GCC: GNU 的 C 和 C++ 编译器
+    - GDB: GNU 程序调试器
+    - Gzip: gz 格式压缩与解压缩工具
+    - GIMP: GNU 图像编辑工具
 
     它们的首字母 g 都是 GNU 的缩写（当然不是所有以 g 开头的都是 GNU 软件）。许多 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件；还有[更多优秀的软件](https://www.gnu.org/software/)，被自由软件爱好者维护、分享……选择 Linux，很大程度上是一种对极客精神与开源文化的认同。
 
@@ -94,14 +93,14 @@ Linux 内核并不是一个完整的操作系统，因为它过于精简，单�
 
 Debian 是一个完全由自由软件构成的类 UNIX 操作系统，第一个版本发布于 1993 年 9 月 15 日，迄今仍在维护，是最早的发行版之一。其以坚持自由软件精神和生态环境优良而出名，拥有庞大的用户群体，甚至自己也成为了一个主流的子框架，称为“Debian GNU/Linux”。
 
-![](images/Debian-Logo.png)
+![Debian](images/Debian-Logo.png)
 
 Debian 图标
 {: .caption }
 
 Debian GNU/Linux 也派生了很多发行版，其中最为著名的便是 Ubuntu（官方译名“友邦拓”）。Ubuntu 由英国的 Canonical 公司主导创立，是一个主打桌面应用的操作系统。其为一般用户提供了一个时新且稳定的由自由软件构成的操作系统，且拥有庞大的社群力量和资源，十分适合普通用户使用。
 
-![](images/Ubuntu-Logo.png)
+![Ubuntu](images/Ubuntu-Logo.png)
 
 Ubuntu 图标
 {: .caption }
@@ -110,14 +109,14 @@ Ubuntu 图标
 
 Red Hat Linux 是美国的 Red Hat 公司发行的一个发行版，第一个版本发布于 1994 年 11 月 3 日，也是一个历史悠久的发行版。它曾经也广为使用，但在 2003 年 Red Hat 公司停止了对它的维护，转而将精力都投身于其企业版 Red Hat Enterprise Linux（简称 RHEL）上，Red Hat Linux 自此完结，而商业市场导向的 RHEL 维护至今。
 
-![](images/Red-Hat-Logo.png)
+![Red Hat](images/Red-Hat-Logo.png)
 
 Red Hat 公司商标，RHEL 是其旗下产品
 {: .caption }
 
 在 Red Hat Linux 在停止官方更新后，由社群启动的 Fedora 项目接管了其源代码并构筑了自己的更新，演变成了如今的 Fedora 发行版。Fedora 是一套功能完备且更新迅速的系统，且本身计划也受到了 Red Hat 公司的赞助，成为了公司测试新技术的平台。
 
-![](images/Fedora-Logo.png)
+![Fedora](images/Fedora-Logo.png)
 
 Fedora 图标
 {: .caption }
@@ -126,7 +125,7 @@ Fedora 图标
 
 2020 年 12 月，CentOS 社区在其博客中[宣布未来的重点转向 CentOS Stream](https://www.redhat.com/en/blog/centos-stream-building-innovative-future-enterprise-linux)，这是一个全新的滚动发行版。在此之前，RHEL 的上游为 Fedora，而 CentOS 的上游为 RHEL；在推出 CentOS Stream 之后，它就成为了 RHEL 的上游发行版。与此同时，CentOS 8 的支持期限被缩短至 2021 年底，且不再推出新的非 Stream 的 CentOS 版本。不满于该决定的人们也组织了新的社区，推出了诸如 [AlmaLinux](https://almalinux.org/)、[Rocky Linux](https://rockylinux.org/) 等发行版。
 
-![](images/CentOS-Logo.png)
+![CentOS](images/CentOS-Logo.png)
 
 CentOS 图标
 {: .caption }
@@ -135,14 +134,14 @@ CentOS 图标
 
 Arch Linux 是一个基于 x86-64 架构的 Linux 发行版，不过因为其内核默认就包含了部分非自由的模块，所以其未受到 GNU 计划的官方支持。即便如此，Arch Linux 也因其“简单、现代、实在、人本、万能”的宗旨赢得了 Linux 中坚用户的广泛青睐。不过，Arch Linux 对这个宗旨的定义和其它发行版有所区别。通常的操作系统为了方便用户快速上手，都是尽可能隐藏底层细节，从而避免用户了解操作系统的运行知识即可直接使用。但是 Arch Linux 则是重在构建优雅、极简的代码结构，这方便了使用者去理解系统，但不可避免地要求使用者自身愿意去了解操作系统的运作方式。某种程度上说，它的“简单”和“人本”注重的是方便用户通过了解而去最大化地利用它，而不是采取屏蔽工作原理的方式来降低使用门槛。因此，本书不建议初学者直接上手 Arch Linux，但十分推荐在读者对 Linux 有进一步了解之后去探索它。
 
-![](images/Arch-Linux-Logo.png)
+![Arch Linux](images/Arch-Linux-Logo.png)
 
 Arch Linux 图标
 {: .caption }
 
 Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使用。为了能让一般用户也能用上 Arch Linux 的强大功能，它的变种 Manjaro 发行版于 2011 年问世。Manjaro 发行版基于 Arch Linux，但更注重易用，因而更适合一般用户。
 
-![](images/Manjaro-Logo.png)
+![Manjaro](images/Manjaro-Logo.png)
 
 Manjaro 图标
 {: .caption }
@@ -167,7 +166,7 @@ Manjaro 图标
 
 由谷歌公司推出的 Android 叫做 Android 原生系统，而基于该原生系统诞生出来的各类独特的操作系统就是 Android/Linux 系下的子发行版。Android/Linux 下的子发行版很多，如华为公司的 EMUI 操作系统和小米公司的 MIUI 操作系统等。
 
-![](images/Android-10-Native.png)
+![Android](images/Android-10-Native.png)
 
 Android 10 原生界面
 {: .caption }
@@ -180,7 +179,7 @@ Android 10 原生界面
 
 另一类有名的服务器操作系统是微软公司的 Windows Server 系列，不过其流行程度比不上各类 Linux 发行版。
 
-![](images/Windows-Server.png)
+![Windows Server](images/Windows-Server.png)
 
 Windows Server 图标
 {: .caption }
@@ -189,7 +188,7 @@ Windows Server 图标
 
 比起十几年前采用传统线路的电视，现在国内很多家庭里的电视都换成了智能数字电视，这些电视通常会配备一个机顶盒来控制电视播放的内容。实际上，电视机顶盒就是一个嵌入式设备，而 Android/Linux 分支下的各类发行版正是主流的嵌入式操作系统，如谷歌公司为数字电视专门推出的 Android TV 操作系统。
 
-![](images/Android-TV.png)
+![Android TV](images/Android-TV.png)
 
 Android TV 图标
 {: .caption }
@@ -200,27 +199,31 @@ Android TV 图标
 
 在本机上安装一个 Linux 发行版有很多种选择，如：安装方法可以选择实机安装或虚拟机安装；发行版则可以在诸多选项中任意抉择。然而，对于新手来说，本书**不建议直接采用实机安装 Linux**，因为这样做会面临以下问题：
 
--   在安装过程中不理解关键的选项（如：磁盘分区、挂载、交换空间分配等）的意义，很容易做出错误的决定；
--   错误的配置可能导致自己原先本机上的操作系统和数据遭到不可逆转的损坏；
--   部分硬件可能对安装的发行版缺少兼容，从而导致意外安装失败。
--   如果安装的过程中选择下载附加工具，可能会因为默认镜像在国外而导致下载十分缓慢，从而让安装流程变得很漫长。
+- 在安装过程中不理解关键的选项（如：磁盘分区、挂载、交换空间分配等）的意义，很容易做出错误的决定；
+- 错误的配置可能导致自己原先本机上的操作系统和数据遭到不可逆转的损坏；
+- 部分硬件可能对安装的发行版缺少兼容，从而导致意外安装失败。
+- 如果安装的过程中选择下载附加工具，可能会因为默认镜像在国外而导致下载十分缓慢，从而让安装流程变得很漫长。
 
 鉴于以上问题对于新手来说十分常见，本书的编写组为各位读者专门提供了另外一种更为安全高效的方法：在虚拟机上运行 Linux 发行版镜像。虚拟机简单来说可以视作一个安全可靠的沙盒，它受到虚拟机管理软件的管理，而管理软件是直接安装在自己目前常用的操作系统上的。本书**推荐使用虚拟机运行安装完毕的 Linux 镜像**，因为这样会有如下优点：
 
--   读者仍然可以安心地使用自己当前的操作系统，因为虚拟机不干涉当前电脑操作系统的配置。
--   无需考虑底层硬件的兼容性问题，稳定性大幅提升。
--   系统已经安装完毕，使用虚拟机打开时相当于直接开机，无需经历安装流程。
--   如果在虚拟机中发生任何错误，可以通过重置、回溯虚拟机镜像的方法无痛修复，而不会伤害到读者计算机上的操作系统和数据。
+- 读者仍然可以安心地使用自己当前的操作系统，因为虚拟机不干涉当前电脑操作系统的配置。
+- 无需考虑底层硬件的兼容性问题，稳定性大幅提升。
+- 系统已经安装完毕，使用虚拟机打开时相当于直接开机，无需经历安装流程。
+- 如果在虚拟机中发生任何错误，可以通过重置、回溯虚拟机镜像的方法无痛修复，而不会伤害到读者计算机上的操作系统和数据。
 
 因此，本书将主要讲解如何为自己搭建一个安全高效的 Linux 虚拟机。如果你有一台远程的 Linux 服务器，可以参考[拓展阅读](./supplement.md#ssh)的内容配置 SSH 连接。
+
+!!! info "WSL"
+
+    如今，对于 Windows 用户来说，使用 WSL 安装 Linux 或许会是更加便捷的方法，详情可以参考[附录](../Appendix/wsl.md)。
 
 ### 获取虚拟机管理软件 {#get-vm-softwares}
 
 现在在 Windows / macOS 上主流的虚拟机管理软件有：
 
--   [VMware Workstation Player](https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html) 是 VMware 公司推出的一款 Windows 上用于非商业用途的虚拟机管理软件。
--   [VMware Fusion Player](https://customerconnect.vmware.com/web/vmware/evalcenter?p=fusion-player-personal) 是 VMware 公司为 macOS 平台推出的用于非商业用途的虚拟机管理软件。
--   [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。
+- [VMware Workstation Pro](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro) 是 VMware 公司（现已被博通收购）推出的一款 Windows 上的虚拟机管理软件，现已免费。
+- [VMware Fusion Pro](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion) 是 VMware 公司为 macOS 平台推出的虚拟机管理软件，现已免费。
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。
 
 以上软件都是免费的，且支持中文。点击上面对应的链接进入官方下载页面获取安装包，获取完毕后，直接双击打开安装程序，根据安装步骤完成安装即可。
 
@@ -228,8 +231,8 @@ Android TV 图标
 
 Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其体积更小，性能需求更少，因此十分适合各种不同性能的电脑安装使用。本书的编写组已经制作了 Xubuntu 的虚拟机镜像，供读者按需求下载使用。
 
--   （推荐）Xubuntu 22.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-22.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-22.04-amd64.ova)）
--   Xubuntu 20.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova)）
+- （推荐）Xubuntu 24.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-24.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-24.04-amd64.ova)）
+- Xubuntu 22.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-22.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-22.04-amd64.ova)）
 
 目前 Ubuntu 已经不再提供 32 位字长的镜像支持，64 位的镜像可以在绝大部分计算机上运行，并且仍然支持运行 32 位的应用。
 
@@ -262,8 +265,8 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 如果读者想要自己安装 Ubuntu 操作系统的话，以下两篇博客也可以参考：
 
--   [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
--   [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
+- [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
+- [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
 
 ??? tip "Windows 下使用 VirtualBox"
 
@@ -284,19 +287,19 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 若已经安装了上述虚拟机管理软件，则可以直接双击打开虚拟机镜像，管理软件会打开并导入该镜像，导入完毕后可直接点击开始按钮启动。
 
-![](images/VirtualBox-import.jpg)
+![VirtualBox 导入镜像](images/VirtualBox-import.jpg)
 
 VirtualBox 导入设置（需要手动选择镜像）
 {: .caption }
 
-![](images/VWP-Xubuntu-32bit-Login.png)
+![VMware Workstation](images/VWP-Xubuntu-32bit-Login.png)
 
 VMware Workstation 启动 Xubuntu 18.04 虚拟机
 {: .caption }
 
 如果读者采用了上面列出的虚拟机之一，其默认登录用户名和密码均为 `ustc`，输入密码即可登录虚拟机系统桌面。
 
-![](images/VWP-Xubuntu-32bit-Desktop.png)
+![VMware Xubuntu Desktop](images/VWP-Xubuntu-32bit-Desktop.png)
 
 Xubuntu 18.04 虚拟机桌面
 {: .caption }
@@ -305,7 +308,7 @@ Xubuntu 18.04 虚拟机桌面
 
 LUG@USTC 是中国科学技术大学主流的开源社群，也是校内最大的学术科技类社团。其现今拥有数百名热爱开源文化的成员，并受益于他们而正在蓬勃发展。LUG@USTC 维护了中国最大的开源镜像站之一 [USTC Mirrors](https://mirrors.ustc.edu.cn/)，其作为本土的软件源为国内许多开源软件用户提供了镜像服务，是本社群对社会作出的一项重要贡献。
 
-![](images/LUG@USTC-Logo.png)
+![LUG@USTC](images/LUG@USTC-Logo.png)
 
 LUG@USTC 图标
 {: .caption }
@@ -314,7 +317,7 @@ LUG@USTC 图标
 
 你可以从 [LUG@USTC 官方网站](https://lug.ustc.edu.cn/wiki/)中了解我们。官方网站中包括了我们在校内开展的各类流行活动和面向校内外提供的诸多网络服务。
 
-LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学技术大学在读学生，你可以通过致邮 ![](https://lug.ustc.edu.cn/static/email.png){: .img-inline } 附上姓名与学号申请加入本社群；如果你是校外人士，也可以致邮获取进一步的沟通交流方式。
+LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学技术大学在读学生，你可以通过致邮 ![email](https://lug.ustc.edu.cn/static/email.png){: .img-inline } 附上姓名与学号申请加入本社群；如果你是校外人士，也可以致邮获取进一步的沟通交流方式。
 
 ## 思考题 {#questions}
 
@@ -349,7 +352,10 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
 
 ## 引用来源与备注 {#references .no-underline}
 
-[^1]: 数据来自中国互联网信息中心[第 48 次 《中国互联网络发展状况统计报告》（全文）](https://www.cnnic.cn/hlwfzyj/hlwxzbg/hlwtjbg/202109/P020210915523670981527.pdf)。
+[^1]: 数据来自中国互联网信息中心[第 56 次 《中国互联网络发展状况统计报告》（全文）](https://www.cnnic.net.cn/NMediaFile/2025/0730/MAIN1753846666507QEK67ZS9DH.pdf)。
+
 [^2]: 信息来自维基百科条目：[操作系统](https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)。
+
 [^3]: 尽管有许多说法称 Ubuntu LTS 有十年的支持，但是后五年实际上是 Extended Security Maintenance (ESM) 阶段，需要付费的 Ubuntu Advantage 订阅，或者最多 3 台设备的个人免费订阅。ESM 的安全更新仓库与主仓库也是独立的，需要登录后才能访问。
+
 [^4]: 数据来自 Ubuntu 介绍：[The Ubuntu lifecycle and release cadence](https://ubuntu.com/about/release-cycle)。

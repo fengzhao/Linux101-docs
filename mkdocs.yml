@@ -46,6 +46,11 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.superfences
@@ -61,7 +66,7 @@ extra:
       link: https://github.com/ustclug
   analytics:
     provider: google
-    property: UA-160637954-1
+    property: G-Q8WSZQS8E1
 
 extra_css:
   - 'css/extra.css'
@@ -113,3 +118,4 @@ nav:
         - Markdown 教程: Appendix/markdown.md
         - man 文档的一些示例: Appendix/man.md
         - 其他的 Linux 发行版：技术差异简介: Appendix/distribution.md
+        - 使用 WSL 安装 Linux: Appendix/wsl.md
